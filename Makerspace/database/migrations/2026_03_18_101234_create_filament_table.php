@@ -23,6 +23,6 @@ public function up(): void
 
 public function down(): void
 {
-    Schema::dropIfExists('filament');
+    // Schema::dropIfExists('filament');
 }
 };
