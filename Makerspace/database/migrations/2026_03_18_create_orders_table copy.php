@@ -11,16 +11,21 @@ return new class extends Migration
      */
    public function up(): void
     {
-         Schema::create('nieuwsbrief', function (Blueprint $table) {
+         Schema::create('orders', function (Blueprint $table) {
              
              $table->id('id');
+             $table->string('title');
              $table->string('description');
+             $table->string('file_path');
+             
              $table->integer('user_id');
              $table->integer('filament_id');
+            
+            $table->integer('active');
             $table->timestamp("created_at");
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */
