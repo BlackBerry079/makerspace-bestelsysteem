@@ -32,7 +32,7 @@ public function show($id)
             ->where('id', $id)
             ->delete();
         
-        return redirect('/Dashboard');
+        return redirect('/back');
     }
 
 }

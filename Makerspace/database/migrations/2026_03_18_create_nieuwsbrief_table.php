@@ -13,12 +13,13 @@ return new class extends Migration
     {
          Schema::create('nieuwsbrief', function (Blueprint $table) {
              
-             $table->id('id');
-             $table->string('description');
-             $table->integer('user_id');
-             $table->integer('filament_id');
-            $table->timestamp("created_at");
-        });
+             $table->bigInteger('id');
+             $table->string('title'); //  was linestring
+            $table->multiLineString('description');
+             $table->integer('type');
+             $table->timestamp("created_at")->nullable();
+            //  $table->integer('filament_id');
+             });
     }
     
     /**
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-    //  Schema::dropIfExists('orders');
+     Schema::dropIfExists('nieuwsbrief');
     }
 };
