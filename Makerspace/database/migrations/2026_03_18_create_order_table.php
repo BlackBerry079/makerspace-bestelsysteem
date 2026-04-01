@@ -11,18 +11,17 @@ return new class extends Migration
      */
    public function up(): void
     {
-         Schema::create('orders', function (Blueprint $table) {
+         Schema::create('order', function (Blueprint $table) {
              
-             $table->id('id');
-             $table->string('title');
-             $table->string('description');
-             $table->string('file_path');
-             
+             $table->id();
+           $table->string('title');
+            $table->text('description');
+            $table->string('file_path');
              $table->integer('user_id');
              $table->integer('filament_id');
-            
-            $table->integer('active');
-            $table->timestamp("created_at");
+             $table->integer('printer_id');
+            $table->timestamp("created_at")->nullable();
+            $table->timestamp("updated_at")->nullable();
         });
     }
 
@@ -31,6 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-    //  Schema::dropIfExists('orders');
+     Schema::dropIfExists('order');
+     Schema::dropIfExists('orders');
     }
 };

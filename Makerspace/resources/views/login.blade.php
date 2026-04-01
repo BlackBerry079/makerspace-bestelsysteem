@@ -6,17 +6,18 @@
          <title>Login</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     <body>
-
+    
     <!-- hoort GET te zijn -->
-    <h1>Login</h1>
-    <div class="login_pagina">
-            <form action="/create_playlist" method="GET" enctype="multipart/form-data" class="formulier">
+      <div class="login_pagina">
+        <h1>Login</h1>
+
+        <form action="/create_playlist" method="GET" enctype="multipart/form-data" class="formulier">
             @csrf
             <input type="text" placeholder="studentnummer">
             <input type="text" placeholder="Emailadress">
             <button type="submit" class="knop">Login</button>
         </form>
-        </div>
-    
-    </body>
+    </div>
+
+</body>
 </html>

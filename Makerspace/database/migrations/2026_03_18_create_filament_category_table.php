@@ -11,21 +11,19 @@ return new class extends Migration
      */
    public function up(): void
     {
-         Schema::create('users', function (Blueprint $table) {
+         Schema::create('filament_category', function (Blueprint $table) {
              
-             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('role');
-            $table->boolean('active');
+             $table->bigInteger('id');
+           $table->lineString('name');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        //  Schema::dropIfExists('users');
+    //  Schema::dropIfExists('order');
+     Schema::dropIfExists('filament_category');
     }
 };

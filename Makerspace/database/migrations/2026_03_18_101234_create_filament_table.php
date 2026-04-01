@@ -12,17 +12,20 @@ return new class extends Migration
 public function up(): void
 {
     Schema::create('filament', function (Blueprint $table) {
-        $table->id();
-        $table->string("name");
-        $table->string("description");
-        $table->integer("amount_available");
-        $table->timestamps(); // created_at en updated_at
-        $table->boolean("active");
-    });
+        $table->bigInteger('id');
+        $table->bigInteger("name");
+        $table->bigInteger("description");
+
+        $table->integer("category_id");
+        $table->bigInteger("amount_available");
+        
+        $table->timestamp("created_at")->nullable();
+        $table->bigInteger("active");
+        $table->timestamp("updated_at")->nullable();    });
 }
 
 public function down(): void
 {
-    // Schema::dropIfExists('filament');
+    Schema::dropIfExists('filament');
 }
 };

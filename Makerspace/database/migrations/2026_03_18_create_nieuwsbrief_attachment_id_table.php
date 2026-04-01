@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+   public function up(): void
+    {
+         Schema::create('nieuwsbrief_attachment_id', function (Blueprint $table) {
+             
+             $table->bigInteger('id');
+             $table->lineString('path');
+           $table->bigInteger('nieuwsbrief_id');
+            // admin en student seeden
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+    //  Schema::dropIfExists('order');
+     Schema::dropIfExists('nieuwsbrief_attachment_id');
+    }
+};
