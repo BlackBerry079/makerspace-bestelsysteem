@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Users</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f3f4f6;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin:0;
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    text-align:center;
+    width:300px;
+}
+
+button{
+    padding:10px 16px;
+    border:none;
+    border-radius:8px;
+    background:#3b82f6;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+}
+
+button:hover{
+    background:#2563eb;
+}
+
+.remove-btn{
+    margin-top:10px;
+    padding:6px 10px;
+    font-size:12px;
+    background:#ef4444;
+}
+
+.remove-btn:hover{
+    background:#dc2626;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    width:300px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+input[type=text],
+input[type=password]{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.actions{
+    display:flex;
+    justify-content:space-between;
+}
+
+#showcase-users{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:320px;
+}
+
+.user-card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.user-card.unavailable{
+    opacity:0.5;
+}
+
+/* Switch */
+
+.switch{
+    position:relative;
+    display:inline-block;
+    width:50px;
+    height:24px;
+    margin-top:10px;
+}
+
+.switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+.slider{
+    position:absolute;
+    cursor:pointer;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#ccc;
+    transition:.3s;
+    border-radius:24px;
+}
+
+.slider:before{
+    position:absolute;
+    content:"";
+    height:18px;
+    width:18px;
+    left:3px;
+    bottom:3px;
+    background:white;
+    transition:.3s;
+    border-radius:50%;
+}
+
+input:checked + .slider{
+    background-color:#22c55e;
+}
+
+input:checked + .slider:before{
+    transform:translateX(26px);
+}
+
+.status-text{
+    font-size:12px;
+    margin-top:4px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Gebruikers</h2>
+    <button onclick="openModal()">Voeg een Gebruiker toe</button>
+</div>
+
+<div id="showcase-users"></div>
+
+<div class="modal" id="userModal">
+    <div class="modal-content">
+        <h3>Voeg een Gebruiker toe</h3>
+
+        <label>Naam</label>
+        <input type="text" id="name">
+
+        <label>Wachtwoord</label>
+        <input type="password" id="password">
+
+        <label>Rol</label>
+        <input type="text" id="role">
+
+        <div class="actions">
+            <button onclick="closeModal()">anuleren</button>
+            <button onclick="addUser()">toevoegen</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("userModal").style.display="flex";
+}
+
+function closeModal(){
+    document.getElementById("userModal").style.display="none";
+}
+
+function addUser(){
+
+    const name=document.getElementById("name").value;
+    const password=document.getElementById("password").value;
+    const role=document.getElementById("role").value;
+
+    if(!name||!password||!role){
+        alert("Please fill in all fields");
+        return;
+    }
+
+    const showcase=document.getElementById("showcase-users");
+
+    const card=document.createElement("div");
+    card.className="user-card";
+
+    card.innerHTML=`
+        <strong>${name}</strong><br>
+        Role: ${role}
+
+        <div>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+            <div class="status-text">Active</div>
+        </div>
+
+        <button class="remove-btn">Remove</button>
+    `;
+
+    const toggle=card.querySelector("input");
+    const status=card.querySelector(".status-text");
+
+    toggle.onchange=function(){
+        if(toggle.checked){
+            status.textContent="Active";
+            card.classList.remove("unavailable");
+        }else{
+            status.textContent="Suspended";
+            card.classList.add("unavailable");
+        }
+    };
+
+    card.querySelector(".remove-btn").onclick=function(){
+        card.remove();
+    };
+
+    showcase.appendChild(card);
+
+    document.getElementById("name").value="";
+    document.getElementById("password").value="";
+    document.getElementById("role").value="";
+
+    closeModal();
+}
+</script>
+
+</body>
+</html>
