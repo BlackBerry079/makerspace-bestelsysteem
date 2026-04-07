@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use Carbon\Traits\Timestamp;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
-use function Laravel\Prompts\error;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,28 +27,30 @@ class DatabaseSeeder extends Seeder
         
         $test_data_users=[
             [
-                'name' => 'Alice Jansen',
-                'email' => '@davinci.nl',
-                // cijfers horen 8 te zijn + @davinci.nl
+                'name' => 'stephen Kusters',
+                'email' => '99073048@mydavinci.nl',
                 'role' => 'admin',
                 'active' => true
             ],
+            // [
+            //     'name' => 'Bob Jansen',
+            //     'email' => '@davinci.nl',
+            //     // cijfers horen 8 te zijn + @davinci.nl
+            //     'role' => 'admin',
+            //     'active' => true
+            // ]
          
         ];
 
         foreach ($test_data_users as $test) {
+            // email check if 9 cijfers + @davinci.nl er in zit 
+            // if (str_contains($test['email'], '@mydavinci.nl') === false || strlen($test['email']) != 19) {
+            //      throw new \Exception('email is niet geldig');
+            // }
             DB::table('user')->insert([
                 ...$test,   
                 'created_at' => now(),
                 'updated_at' => now(),
-                
-                // email check if 9 cijfers + @davinci.nl er in zit 
-                if ($test['email']) {
-                    return $test['email'];
-                } else {
-                    throw error('email is niet geldig');
-                }
-            
             ]);
         }
     }

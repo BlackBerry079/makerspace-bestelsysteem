@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +14,12 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
+Route::get('/',[DashboardController::class, 'show'] )->name('dashboard');
 
-Route::get('/playlist/{id}', [OrderController::class, 'show']);  
+
+// Route::get('/dashboard' ,[DashboardController::class, 'show'])->name('dashboard');
+// Route::get('/Dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard');
+

@@ -10,8 +10,8 @@
     <!-- hoort GET te zijn -->
       <div class="login_pagina">
         <h1>Login</h1>
-
-        <form action="/create_playlist" method="GET" enctype="multipart/form-data" class="formulier">
+        
+        <form action="/Dashboard" method="GET" enctype="multipart/form-data" class="formulier">
             @csrf
             <input type="text" placeholder="studentnummer">
             <input type="text" placeholder="Emailadress">
