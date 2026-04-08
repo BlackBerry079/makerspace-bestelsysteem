@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PrinterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,18 @@ use App\Http\Controllers\DashboardController;
 // Route::get('/', function () {
 //     return view('login');
 // });
+
+// Dashboard regelt de display van printers, orders en nieuwsbrief,users
 Route::get('/',[DashboardController::class, 'show'] )->name('dashboard');
+Route::get('/',[DashboardController::class, 'show'] )->name('delete_printer');
+
+// route naar de printerpagina
+Route::get('/printer',[PrinterController::class, 'show'] )->name('printer');
+// Printer routes hiermee kan je printers maken
+Route::post('/create_printer',[PrinterController::class, 'create_printer'])->name('printer.create');
+
+
+
 
 
 // Route::get('/dashboard' ,[DashboardController::class, 'show'])->name('dashboard');

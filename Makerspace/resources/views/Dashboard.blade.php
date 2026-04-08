@@ -10,9 +10,9 @@
         <header>
             <nav>
             <ul>
-                <li><h1><a href="/dashboard">Dashboard</a></h1></li>
-                <li><h1><a href="/printers">printers</a></h1></li>
-                <li><h1><a href="/newsletters">nieuwsbrief</a></h1></li>
+                <li><h1><a href="/">Dashboard</a></h1></li> <!-- / is dashboard als standaard -->
+                <li><h1><a href="/printer">printers</a></h1></li>
+                <li><h1><a href="/nieuwsbrief">nieuwsbrief</a></h1></li>
                 <li><h1><a href="/orders">Orders</a></h1></li>
             </ul>
             </nav>
