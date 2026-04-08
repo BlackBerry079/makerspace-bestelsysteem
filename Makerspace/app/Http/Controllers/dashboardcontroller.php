@@ -3,34 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;    
+use Illuminate\Http\Request;
 
-class dashboardController extends Controller{
-public function show($id)
+class dashboardController extends Controller
 {
-    $order= DB::table('orders')->where('id', $id)->first();
-    $printer=DB::table('printer')->where('id', $id)->get();
-    $nieuwsbrief=DB::table('nieuwsbrief')->where('id', $id)->get();
+    public function show($id = null)
+    {
+        if ($id !== null) {
+            $order = DB::table('orders')->where('id', $id)->first();
+            $printer = DB::table('printer')->where('id', $id)->get();
+            $nieuwsbrief = DB::table('nieuwsbrief')->where('id', $id)->get();
+        } else {
+            $order = DB::table('orders')->orderBy('created_at', 'desc')->get();
+            $printer = DB::table('printer')->get();
+            $nieuwsbrief = DB::table('nieuwsbrief')->get();
+        }
 
-   return view('dashboard', [
+        return view('dashboard', [
             'orders' => $order,
             'printer' => $printer,
             'nieuwsbrief' => $nieuwsbrief,
-
         ]);
-        }
+    }
 }
-    
-// functie bedoeld voor de ADMIN
-//  public function destroy_nieuwsbrief($id)
-//     {
-//         DB::table('nieuwsbrief')
-//             ->where('id', $id)
-//             ->delete();
-        
-//             return redirect()->back()->with('success', 'Nieuwsbrief verwijderd');
-    
-//     }
-
-// }
-    

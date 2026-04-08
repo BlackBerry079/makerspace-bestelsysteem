@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class PlaylistController extends Controller
+class LoginController extends Controller
 {
-public function show($id)
-{
-   
+    public function show()
+    {
+        return view('login');
+    }
 }
-    
-}
-
-    
-    

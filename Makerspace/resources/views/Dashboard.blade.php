@@ -6,8 +6,34 @@
          <title></title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     <body>
-   
-   
-    
+        
+        <header>
+            <nav>
+            <ul>
+                <li><h1><a href="/dashboard">Dashboard</a></h1></li>
+                <li><h1><a href="/printers">printers</a></h1></li>
+                <li><h1><a href="/newsletters">nieuwsbrief</a></h1></li>
+                <li><h1><a href="/orders">Orders</a></h1></li>
+            </ul>
+            </nav>
+        </header>
+        
+        
+
+        <div class="status">
+            <p>printers</p>
+            <p>voorraad</p>
+            <p>Orders</p> 
+        </div>
+            
+        <div class="orders">
+        </div>
+            
+
+
+        <div class="sidebar">
+            <h1>nieuwsbrief</h1>
+        </div>
+            
     </body>
 </html>
