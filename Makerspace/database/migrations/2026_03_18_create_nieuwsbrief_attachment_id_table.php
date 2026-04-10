@@ -13,7 +13,7 @@ return new class extends Migration
     {
          Schema::create('nieuwsbrief_attachment_id', function (Blueprint $table) {
              
-             $table->bigInteger('id');
+             $table->id();
              $table->lineString('path');
            $table->bigInteger('nieuwsbrief_id');
             // admin en student seeden

@@ -18,8 +18,10 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-
-        // if
+        
+        // if check admin email and password
+        
+        // if check eindigt op @davinci.nl
         
         return redirect()->route('dashboard');
     }
