@@ -33,7 +33,33 @@
 
         <div class="sidebar">
             <h1>nieuwsbrief</h1>
+
+            <form action="{{ route('create_nieuwsbrief') }}" method="POST">
+                @csrf
+                <input type="text" name="title" placeholder="Titel van nieuwsbrief" class="invoer">
+                <input type="text" name="description" placeholder="Beschrijving van nieuwsbrief" class="invoer">
+                <input type="text" name="type" placeholder="Type van nieuwsbrief" class="invoer"><!-- announcement stock error -->
+                <button type="submit" class="knop">Maak nieuwsbrief aan</button>
+            </form>
         </div>
+        
+        <div class="nieuwsbrief">
+            @foreach($nieuwsbrief as $item)
+            <div class="nieuwsbrief-item">
+                <h2>{{ $item->title }}</h2>
+                <p>{{ $item->description }}</p>
+                <p>{{ $item->type }}</p>
+                
+                <form action="{{ route('delete_nieuwsbrief', $item->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="knop">Verwijder</button>
+                </form>
+            </div>
+            @endforeach
+        </div>
+
+
             
     </body>
 </html>

@@ -86,19 +86,6 @@ border-radius: 20px;
 
  
  
- .sidebar{
-display: flex;
-justify-content: center;
-color: black;
-background-color: rgb(255, 255, 255);
-border-style: solid;
-width: 320px;
-height: 800px;
-margin-left: auto;
-margin-right: 10px;
-border-radius: 20px;
-
-}
 
 
 
@@ -133,6 +120,10 @@ border-radius: 20px;
    color: black;
     flex-direction: column;
     gap: 12px;
+}
+label {
+    font-size: 23px;
+    color: black;
 }
 
 .invoer {
@@ -206,3 +197,29 @@ nav ul li a :hover{
 }
 
 
+
+.nieuwsbrief{
+display: flex;
+justify-content: center;
+color: rgb(0, 0, 0);
+background-color: rgb(42, 37, 37);
+border-style: solid;
+width: 300px;
+height: 200px;
+margin-left: 450px;
+border-radius: 20px;
+}
+
+ /* .sidebar{
+display: flex;
+justify-content: center;
+color: black;
+background-color: rgb(255, 255, 255);
+border-style: solid;
+width: 320px;
+height: 800px;
+margin-left: auto;
+margin-right: 10px;
+border-radius: 20px;
+
+} */

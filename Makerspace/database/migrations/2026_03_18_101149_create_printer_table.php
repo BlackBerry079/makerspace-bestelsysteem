@@ -15,7 +15,7 @@ return new class extends Migration
              
             $table->integer("id")->autoIncrement();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->bigInteger('filament_max')->default(2500);
             $table->enum('status', ['beschikbaar', 'onderhoud', 'niet beschikbaar'])->default('beschikbaar');
              $table->timestamp("created_at")->useCurrent();

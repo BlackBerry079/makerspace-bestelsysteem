@@ -13,11 +13,11 @@ return new class extends Migration
     {
          Schema::create('nieuwsbrief', function (Blueprint $table) {
              
-             $table->bigInteger('id');
+             $table->id();
              $table->string('title'); //  was linestring
-            $table->multiLineString('description');
-             $table->integer('type');
-             $table->timestamp("created_at")->nullable();
+            $table->string('description');
+             $table->string('type');
+             $table->timestamp("created_at")->useCurrent();
             //  $table->integer('filament_id');
              });
     }
