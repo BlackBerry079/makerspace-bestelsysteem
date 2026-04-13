@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OrderPageController;
+use App\Http\Controllers\AuthPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +44,13 @@ Route::get('/delete_printer/{id}', [PrinterController::class, 'delete_printer'])
 
 // Route::get('/dashboard' ,[DashboardController::class, 'show'])->name('dashboard');
 // Route::get('/Dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard');
+
+// Nieuwe MVC routes voor verplaatste HTML-pagina's
+Route::get('/bestellingen', [OrderPageController::class, 'index'])->name('orders.index');
+Route::post('/bestellingen', [OrderPageController::class, 'store'])->name('orders.store');
+
+Route::get('/login', [AuthPageController::class, 'showLogin'])->name('auth.login');
+Route::post('/login', [AuthPageController::class, 'login'])->name('auth.login.submit');
+Route::get('/register', [AuthPageController::class, 'showRegister'])->name('auth.register');
+Route::post('/register', [AuthPageController::class, 'register'])->name('auth.register.submit');
 
