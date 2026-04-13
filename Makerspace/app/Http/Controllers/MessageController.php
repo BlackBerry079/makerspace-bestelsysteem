@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-public function show()
+public function show($id)
 {
-     $nieuwsbrief = DB::table('nieuwsbrief')->get();
-
+     $nieuwsbrief = DB::table('nieuwsbrief')->where('id',$id)->get();
+    
     return view('nieuwsbrief',[
         'nieuwsbrief' => $nieuwsbrief
         ]);
@@ -45,7 +45,7 @@ public function create_nieuwsbrief(Request $request)
             ->where('id', $id)
             ->delete();
         
-        return (redirect('/dashboard'));
+        return (redirect('/'));
     }
 }
    
