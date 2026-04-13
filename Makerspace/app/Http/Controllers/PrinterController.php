@@ -48,3 +48,4 @@ public function create_printer(Request $request)
     }
 }
    
+

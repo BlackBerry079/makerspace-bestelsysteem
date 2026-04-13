@@ -24,6 +24,10 @@ use App\Http\Controllers\AuthPageController;
 
 // Dashboard regelt de display van printers, orders en nieuwsbrief,users
 Route::get('/',[DashboardController::class, 'show'] )->name('');
+// Route::get('/printer',[DashboardController::class, 'show'] )->name('printercount');
+
+
+
 
 Route::post('/',[MessageController::class,'create_nieuwsbrief']) ->name('create_nieuwsbrief');
 Route::delete('/delete_nieuwsbrief/{id}',[MessageController::class,'delete_nieuwsbrief']) ->name('delete_nieuwsbrief');

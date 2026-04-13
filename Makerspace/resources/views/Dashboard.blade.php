@@ -20,16 +20,23 @@
         
         
         
-        <div class="status">
-            <p>printers</p>
-            <p>voorraad</p>
-            <p>Orders</p> 
+         <div class="status">
+            <div class="printer_aantal">
+                <p>printers</p>
+                <p><a href="/printer">{{ count($active_printer) }} / {{ count($printer) }}</a></p>
+                <!-- active printer word  -->
+            </div>
+            <div class="voorraad_aantal">
+                <p>voorraad</p>
+                <p><a href="/voorraad">{{ count($active_voorraad_filaments) }} / {{ count($voorraad) }}</a></p>
+            </div>
+             <div class="orders_aantal">
+                <p>Orders</p> 
+               <p><a href="/orders">{{ count($orders) ?? 12 }}</a></p>
+            </div>
         </div>
             
-        <div class="orders">
-        </div>
-            
-
+        
 
         <div class="sidebar">
             <h1>nieuwsbrief</h1>
