@@ -12,16 +12,15 @@ return new class extends Migration
 public function up(): void
 {
     Schema::create('filament', function (Blueprint $table) {
-        $table->bigInteger('id');
-        $table->bigInteger("name");
-        $table->bigInteger("description");
+        $table->id();
+        $table->string("name");
+        $table->text("description");
+        $table->integer("amount_available");
+        $table->unsignedBigInteger("category_id")->index();
+        $table->timestamps();
 
-        $table->integer("category_id");
-        $table->bigInteger("amount_available");
-        
-        $table->timestamp("created_at")->nullable();
-        $table->bigInteger("active");
-        $table->timestamp("updated_at")->nullable();    });
+        $table->foreign('category_id')->references('id')->on('filament_category')->onDelete('cascade');
+    });
 }
 
 public function down(): void

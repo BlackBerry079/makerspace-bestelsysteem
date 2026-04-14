@@ -13,10 +13,11 @@ return new class extends Migration
     {
          Schema::create('nieuwsbrief_attachment_id', function (Blueprint $table) {
              
-             $table->id();
-             $table->lineString('path');
-           $table->bigInteger('nieuwsbrief_id');
-            // admin en student seeden
+            $table->id();
+            $table->lineString('path');
+            $table->unsignedBigInteger('nieuwsbrief_id');
+
+            $table->foreign('nieuwsbrief_id')->references('id')->on('nieuwsbrief')->onDelete('cascade');
         });
     }
 

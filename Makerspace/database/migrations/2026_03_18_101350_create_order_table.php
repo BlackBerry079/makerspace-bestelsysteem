@@ -11,14 +11,20 @@ return new class extends Migration
      */
    public function up(): void
     {
-         Schema::create('order_filaments', function (Blueprint $table) {
+         Schema::create('order', function (Blueprint $table) {
              
             $table->id();
-            $table->unsignedBigInteger('order_id')->index();
+            $table->string('title');
+            $table->text('description');
+            $table->string('file_path');
+            $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('filament_id')->index();
-        
-            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+            $table->unsignedBigInteger('printer_id')->index();
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
             $table->foreign('filament_id')->references('id')->on('filament')->onDelete('cascade');
+            $table->foreign('printer_id')->references('id')->on('printer')->onDelete('cascade');
         });
     }
 
@@ -27,7 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-    //  Schema::dropIfExists('order');
-        Schema::dropIfExists('order_filaments');
+        Schema::dropIfExists('order');
     }
 };

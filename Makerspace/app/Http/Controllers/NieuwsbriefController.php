@@ -13,16 +13,16 @@ class NieuwsbriefController extends Controller
 	}
 
 	public function get_id(Request $request, $id) {
-		return Nieuwsbrief::with(['order'])->findOrFail($id);
+		// get nieuwsbrief with attachments
+		return Nieuwsbrief::with(['nieuwsbriefattachments'])->findOrFail($id);
 	}
 
 	public function create(Request $request) {
-
 		$validator = Validator::make($request->all(), [
 			"title" => "required|string|max:255",
 			"description" => "required|string",
 			"type" => "required|in:announcement,stock,error,info",
-			"filament_id" => "nullable|integer|exists:filaments,id"
+			"filament_id" => "nullable|integer|exists:filament,id"
 		]);
 		
 		if ($validator->fails()) {
@@ -40,12 +40,11 @@ class NieuwsbriefController extends Controller
 	}
 
 	public function update(Request $request, $id) {
-
 		$validator = Validator::make($request->all(), [
 			"title" => "sometimes|string|max:255",
 			"description" => "sometimes|string",
 			"type" => "sometimes|in:announcement,stock,error,info",
-			"filament_id" => "nullable|integer|exists:filaments,id"
+			"filament_id" => "nullable|integer|exists:filament,id"
 		]);
 		
 		if ($validator->fails()) {

@@ -13,17 +13,12 @@ return new class extends Migration
     {
          Schema::create('printer', function (Blueprint $table) {
              
-            $table->integer("id")->autoIncrement();
+            $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->bigInteger('filament_max')->default(2500);
-            $table->enum('status', ['beschikbaar', 'onderhoud', 'niet beschikbaar'])->default('beschikbaar');
-             $table->timestamp("created_at")->useCurrent();
-            $table->timestamp("updated_at")->useCurrent();
-            $table->string('brand')->default('Bambulab');
-            
-            // 
-            // 13 crea 2 bambu's
+            $table->integer('filament_max');
+            $table->enum('status', ['beschikbaar', 'onderhoud', 'in gebruik'])->default('beschikbaar');
+            $table->timestamps();
         });
     }
     

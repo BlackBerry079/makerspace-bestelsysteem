@@ -13,8 +13,8 @@ return new class extends Migration
     {
          Schema::create('filament_category', function (Blueprint $table) {
              
-             $table->bigInteger('id');
-           $table->lineString('name');
+            $table->id();
+            $table->string('name');
         });
     }
 

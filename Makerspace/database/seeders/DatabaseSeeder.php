@@ -10,19 +10,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
             $test_data_role=[
-               [
-
-                   'name' => 'admin'
-               ],
-               [
+                [
+                    'name' => 'superadmin'
+                ],
+                [
+                    'name' => 'admin'
+                ],
+                [
                    'name' => 'user'
-               ]
+                ]
            ];
            
            foreach($test_data_role as $role){
-               DB::table('role')->insert([
+               DB::table('role')->insert(
                    $role
-               ]);
+               );
            }
         
         $test_data_users=[
