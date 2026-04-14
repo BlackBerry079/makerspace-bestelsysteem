@@ -19,7 +19,7 @@ public function up(): void
         $table->integer("amount_available");
         $table->unsignedBigInteger("category_id")->index();
         $table->timestamps();
-
+        $table->boolean('active')->default(true); // voorraad actief of niet toegevoegd
         $table->foreign('category_id')->references('id')->on('filament_category')->onDelete('cascade');
     });
 }

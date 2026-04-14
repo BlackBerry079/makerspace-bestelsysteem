@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'stephen Kusters',
                 'email' => '99073048@mydavinci.nl',
-                'role' => 'admin',
+                'role_id' => '1',
                 'active' => true
             ],
             // [

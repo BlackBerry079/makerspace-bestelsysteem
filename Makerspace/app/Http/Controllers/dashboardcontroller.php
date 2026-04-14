@@ -18,7 +18,7 @@ class dashboardController extends Controller
              $active_voorraad_filaments = DB::table('filament')->where('active', 'beschikbaar')->get(); // voorraad die actief is
         
         } else {
-            $order = DB::table('orders')->orderBy('created_at', 'desc')->get();
+            $order = DB::table('order')->orderBy('created_at', 'desc')->get();
             $printer = DB::table('printer')->get();
             $nieuwsbrief = DB::table('nieuwsbrief')->get();
             $active_printer = DB::table('printer')->where('status', 'beschikbaar')->get(); // printers die actief zijn
