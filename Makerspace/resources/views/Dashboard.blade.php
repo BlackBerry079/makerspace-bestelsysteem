@@ -10,12 +10,6 @@
 <body>
 
 <header>
-    <div class="nav">
-        <a href="/">Dashboard</a>
-        <a href="/printer">Printers</a>
-        <a href="/nieuwsbrief">Nieuwsbrief</a>
-        <a href="/orders">Orders</a>
-    </div>
 
     <form action="{{ route('logout') }}" method="POST">
         @csrf
