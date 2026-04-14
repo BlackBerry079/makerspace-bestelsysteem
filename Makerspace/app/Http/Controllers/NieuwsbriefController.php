@@ -16,7 +16,7 @@ class NieuwsbriefController extends Controller
 		// get nieuwsbrief with attachments
 		return Nieuwsbrief::with(['nieuwsbriefattachments'])->findOrFail($id);
 	}
-
+	
 	public function create(Request $request) {
 		$validator = Validator::make($request->all(), [
 			"title" => "required|string|max:255",
@@ -69,11 +69,18 @@ class NieuwsbriefController extends Controller
 
 		return $nieuwsbrief;
 	}
-
+	
 	public function delete(Request $request, $id) {
 		$nieuwsbrief = Nieuwsbrief::findOrFail($id);
 		$nieuwsbrief->delete();
 
+
+
 		return response()->json(['message' => 'Nieuwsbrief deleted successfully'], 200);
+		 
+		//  DB::table('nieuwsbrief')
+        //     ->where('id', $id)
+        //     ->delete();
+        
 	}
 }

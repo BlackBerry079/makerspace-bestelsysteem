@@ -1,65 +1,73 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title></title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <body>
-        
-        <header>
-            <nav>
-            <ul>
-                <li><h1><a href="/">Dashboard</a></h1></li> <!-- / is dashboard als standaard -->
-                <li><h1><a href="/printer">printers</a></h1></li>
-                <li><h1><a href="/nieuwsbrief">nieuwsbrief</a></h1></li>
-                <li><h1><a href="/orders">Orders</a></h1></li>
-            </ul>
-            </nav>
-        </header>
-        
-        
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
 
-        <div class="status">
-            <p>printers</p>
-            <p>voorraad</p>
-            <p>Orders</p> 
+<body>
+
+<header>
+    <div class="nav">
+        <a href="/">Dashboard</a>
+        <a href="/printer">Printers</a>
+        <a href="/nieuwsbrief">Nieuwsbrief</a>
+        <a href="/orders">Orders</a>
+    </div>
+
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="logout">Logout</button>
+    </form>
+</header>
+
+<!-- Main Content -->
+<div class="main">
+    <!-- OVERVIEW -->
+    <div class="overview">
+        <div>
+            Printers <span>{{ count($active_printer) }} / {{ count($printer) }}</span>
         </div>
-            
-        <div class="orders">
+        <div>
+            Voorraad <span>{{ count($active_voorraad_filaments) }} / {{ count($voorraad) }}</span>
         </div>
-            
-
-
-        <div class="sidebar">
-            <h1>nieuwsbrief</h1>
-
-            <form action="{{ route('create_nieuwsbrief') }}" method="POST">
-                @csrf
-                <input type="text" name="title" placeholder="Titel van nieuwsbrief" class="invoer">
-                <input type="text" name="description" placeholder="Beschrijving van nieuwsbrief" class="invoer">
-                <input type="text" name="type" placeholder="Type van nieuwsbrief" class="invoer"><!-- announcement stock error -->
-                <button type="submit" class="knop">Maak nieuwsbrief aan</button>
-            </form>
+        <div>
+            Orders <span>{{ count($orders) ?? 12 }}</span>
         </div>
-        
-        <div class="nieuwsbrief">
-            @foreach($nieuwsbrief as $item)
-            <div class="nieuwsbrief-item">
-                <h2>{{ $item->title }}</h2>
-                <p>{{ $item->description }}</p>
-                <p>{{ $item->type }}</p>
-                
-                <form action="{{ route('delete_nieuwsbrief', $item->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="knop">Verwijder</button>
-                </form>
+    </div>
+
+    <!-- ORDERS LIST -->
+    <!-- <div class="orders">
+        @foreach($orders as $order)
+        <div class="order">
+                <div>#{{ $order->id }} - {{ $order->klant }}</div>
+                <div class="status {{ $order->status }}">
+                    {{ $order->status }}
+                </div>
             </div>
-            @endforeach
-        </div>
+        @endforeach
+    </div>
+</div> -->
 
+<!-- Sidebar for Creating Nieuwsbrief -->
+<div class="sidebar">
+    <h1>Create Nieuwsbrief</h1>
 
-            
-    </body>
+    <form action="{{ route('create_nieuwsbrief') }}" method="POST">
+        @csrf
+        <input type="text" name="title" placeholder="Title" class="invoer" required>
+        <input type="text" name="description" placeholder="Description" class="invoer" required>
+        <select name="type" class="invoer" required>
+            <option value="announcement">Announcement</option>
+            <option value="stock">Stock</option>
+            <option value="error">Error</option>
+            <option value="info">Info</option>
+        </select>
+        <button type="submit" class="knop">Create Nieuwsbrief</button>
+    </form>
+</div>
+
+</body>
 </html>

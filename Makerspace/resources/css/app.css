@@ -40,6 +40,7 @@ nav ul li a :hover{
 
 
 
+/* --------------STATUSBALK MET INTEGERS-------------------------- */
 
 .status{
 display: flex;
@@ -51,14 +52,21 @@ width: 1000px;
 height: 200px;
 margin-left: 450px;
 border-radius: 20px;
-margin-bottom: 20px;
 }
  .status p{
     font-size: 50px;
-    margin: 80px;
+    margin:40px;
     margin-top: 10px;
  color: rgb(0, 0, 0);
  }
+.status a{
+    color: black;
+ }
+
+
+
+
+
  .orders{
  display: flex;
 justify-content: center;
@@ -90,7 +98,7 @@ border-radius: 20px;
 
 
 
-/* --------------create playlist---------- */
+/* --------------CREATE NIEWSBRIEF---------- */
 
 
 .container {
@@ -198,18 +206,23 @@ nav ul li a :hover{
 
 
 
-.nieuwsbrief{
-display: flex;
-justify-content: center;
-color: rgb(0, 0, 0);
-background-color: rgb(42, 37, 37);
-border-style: solid;
-width: 300px;
-height: 200px;
-margin-left: 450px;
-border-radius: 20px;
-}
+/* --------------NIEWSBRIEF-------------------------- */
 
+
+.nieuwsbrief {
+    position: absolute;
+    top: 125px;
+    right: 20px;
+    width: 300px;
+    min-height: 200px; 
+    background-color: rgb(42, 37, 37);
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+}
+ 
+ 
+ 
  /* .sidebar{
 display: flex;
 justify-content: center;
