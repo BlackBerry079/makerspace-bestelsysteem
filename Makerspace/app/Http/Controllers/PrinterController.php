@@ -10,7 +10,7 @@ class PrinterController extends Controller
 public function show()
 {
      $printer = DB::table('printer')->get();
-
+    
     return view('printer',[
         'printer' => $printer
         ]);
@@ -48,3 +48,4 @@ public function create_printer(Request $request)
     }
 }
    
+

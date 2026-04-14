@@ -19,17 +19,24 @@
         </header>
         
         
-
-        <div class="status">
-            <p>printers</p>
-            <p>voorraad</p>
-            <p>Orders</p> 
+        
+         <div class="status">
+            <div class="printer_aantal">
+                <p>printers</p>
+                <p><a href="/printer">{{ count($active_printer) }} / {{ count($printer) }}</a></p>
+                <!-- active printer word  -->
+            </div>
+            <div class="voorraad_aantal">
+                <p>voorraad</p>
+                <p><a href="/voorraad">{{ count($active_voorraad_filaments) }} / {{ count($voorraad) }}</a></p>
+            </div>
+             <div class="orders_aantal">
+                <p>Orders</p> 
+               <p><a href="/orders">{{ count($orders) ?? 12 }}</a></p>
+            </div>
         </div>
             
-        <div class="orders">
-        </div>
-            
-
+        
 
         <div class="sidebar">
             <h1>nieuwsbrief</h1>
@@ -38,7 +45,13 @@
                 @csrf
                 <input type="text" name="title" placeholder="Titel van nieuwsbrief" class="invoer">
                 <input type="text" name="description" placeholder="Beschrijving van nieuwsbrief" class="invoer">
-                <input type="text" name="type" placeholder="Type van nieuwsbrief" class="invoer"><!-- announcement stock error -->
+                <!-- <input type="text" name="type" placeholder="Type van nieuwsbrief" class="invoer">announcement stock error -->
+                <select type="text" name="type" placeholder="Type" class="invoer">
+                    <option>announcement</option> 
+                    <option>stock</option>
+                    <option>error</option> 
+                    <option>info</option>
+                </select>
                 <button type="submit" class="knop">Maak nieuwsbrief aan</button>
             </form>
         </div>
@@ -50,6 +63,8 @@
                 <p>{{ $item->description }}</p>
                 <p>{{ $item->type }}</p>
                 
+                <!-- wordt een dropdown met [announcement', 'stock', 'error', 'info'] opties -->
+                
                 <form action="{{ route('delete_nieuwsbrief', $item->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -58,7 +73,7 @@
             </div>
             @endforeach
         </div>
-
+    
 
             
     </body>

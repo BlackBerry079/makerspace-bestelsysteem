@@ -15,7 +15,7 @@ class NieuwsbriefController extends Controller
 	public function get_id(Request $request, $id) {
 		return Nieuwsbrief::with(['order'])->findOrFail($id);
 	}
-
+	
 	public function create(Request $request) {
 
 		$validator = Validator::make($request->all(), [
@@ -70,11 +70,18 @@ class NieuwsbriefController extends Controller
 
 		return $nieuwsbrief;
 	}
-
+	
 	public function delete(Request $request, $id) {
 		$nieuwsbrief = Nieuwsbrief::findOrFail($id);
 		$nieuwsbrief->delete();
 
+
+
 		return response()->json(['message' => 'Nieuwsbrief deleted successfully'], 200);
+		 
+		//  DB::table('nieuwsbrief')
+        //     ->where('id', $id)
+        //     ->delete();
+        
 	}
 }
