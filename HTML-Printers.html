@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title></title>
-        @vite([, 'resources/js/app.js'])
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body>
 <style>
 body{
     font-family: Arial, sans-serif;
@@ -113,39 +115,62 @@ input{
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 </style>
-        
-        <header>
-            <nav>
-            <ul>
-                <li><h1><a href="/">Dashboard</a></h1></li>
-                <li><h1><a href="/printer">printers</a></h1></li>
-                <li><h1><a href="/newsletters">nieuwsbrief</a></h1></li>
-                <li><h1><a href="/orders">Orders</a></h1></li>
-            </ul>
-            </nav>
-        </header>
-        
-   
-  <div class="container">
+
+<header>
+    <nav>
+        <ul>
+            <li><h1><a href="/">Dashboard</a></h1></li>
+            <li><h1><a href="/printer">Printers</a></h1></li>
+            <li><h1><a href="/newsletters">Nieuwsbrief</a></h1></li>
+            <li><h1><a href="/orders">Orders</a></h1></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Form for creating a new printer -->
+<div class="container">
     <h2 class="koptekst">Maak een nieuwe printer aan</h2>
     
     <form action="/create_printer" method="POST" enctype="multipart/form-data" class="formulier">
         @csrf
-        <input type="text" name="name" placeholder="Naam van printer" class="invoer">
-        <input type="text" name="merk" placeholder="merk van printer" class="invoer">
-        <label for="">Beschrijving</label style="color: black; font-size: 20px; margin-top: 10px;">
-        <input type="text" name="beschrijving" placeholder="" style="height: 200px;" class="invoer">
+        <input type="text" name="name" placeholder="Naam van printer" class="invoer" required>
+        <input type="text" name="merk" placeholder="Merk van printer" class="invoer" required>
+        <label for="">Beschrijving</label>
+        <input type="text" name="beschrijving" placeholder="" style="height: 200px;" class="invoer" required>
         
         <button type="submit" class="knop">Maak Printer aan</button>
     </form>
-
-   
 </div>
-    
-    
 
+<!-- Card Section for Showing Printers -->
+<div class="card">
+    <h2>Printers</h2>
+    <button onclick="openModal()">Voeg een printer toe</button>
+</div>
 
-<!-- de scripts voor de nieuwsbrief -->
+<div id="showcase-printers"></div>
+
+<!-- Modal for Adding a Printer -->
+<div class="modal" id="printerModal">
+    <div class="modal-content">
+        <h3>Voeg een printer toe</h3>
+        
+        <label>Naam printer</label>
+        <input type="text" id="name">
+        
+        <label>Type printer</label>
+        <input type="text" id="type">
+        
+        <label>Hoeveel filaments</label>
+        <input type="number" id="filaments">
+        
+        <div class="actions">
+            <button onclick="closeModal()">Annuleren</button>
+            <button onclick="addPrinter()">Toevoegen</button>
+        </div>
+    </div>
+</div>
+
 <script>
 function openModal(){
     document.getElementById("printerModal").style.display = "flex";
@@ -190,8 +215,6 @@ function addPrinter(){
     closeModal();
 }
 </script>
-    </body>
+
+</body>
 </html>
-
-
-
