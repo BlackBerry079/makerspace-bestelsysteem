@@ -46,9 +46,7 @@ Route::get('/delete_printer/{id}', [PrinterController::class, 'delete_printer'])
 
 
 
-// Route::get('/dashboard' ,[DashboardController::class, 'show'])->name('dashboard');
-// Route::get('/Dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard');
-
+// Order routes
 // Nieuwe MVC routes voor verplaatste HTML-pagina's
 Route::get('/bestellingen', [OrderPageController::class, 'index'])->name('orders.index');
 Route::post('/bestellingen', [OrderPageController::class, 'store'])->name('orders.store');
