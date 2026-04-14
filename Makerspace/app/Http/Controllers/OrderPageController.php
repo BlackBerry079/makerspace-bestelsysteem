@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderPageController extends Controller
 {
@@ -41,5 +42,19 @@ class OrderPageController extends Controller
         return redirect()
             ->route('orders.index')
             ->with('success', 'Bedankt voor je bestelling! Je aanvraag is ontvangen.');
+    }
+
+    public function latestNewsletter()
+    {
+        $items = DB::table('nieuwsbrief')
+            ->select('id', 'title', 'description', 'type', 'created_at')
+            ->orderByDesc('created_at')
+            ->limit(5)
+            ->get();
+
+        return response()->json([
+            'latest' => $items->first(),
+            'items' => $items,
+        ]);
     }
 }
