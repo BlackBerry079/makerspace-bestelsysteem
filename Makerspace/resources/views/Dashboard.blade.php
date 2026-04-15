@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
          <title>Admin Dashboard demo</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/', 'resources/js/app.js'])
     <body>
 
 <style>
@@ -24,7 +24,7 @@ body{
 
 header{
     height:60px;
-    background:#111827;
+    background:#01313e;
     color:white;
     display:flex;
     align-items:center;
@@ -76,6 +76,7 @@ header{
     border-left:1px solid #e5e7eb;
     box-shadow:-4px 0 15px rgba(0,0,0,0.05);
     transition:transform 0.3s ease;
+    
 }
 
 .nieuwsbrief.closed{
@@ -88,6 +89,8 @@ header{
     padding:18px;
     font-weight:600;
     border-bottom:1px solid #eee;
+    color: white;
+    background:#34869d;
 }
 
 .arrow{
@@ -119,31 +122,31 @@ header{
 /* OVERVIEW */
 
 .overview{
-    width:650px;
+    width:900px;
     background:white;
     border-radius:14px;
-    padding:25px;
+    padding:30px;
     box-shadow:0 10px 25px rgba(0,0,0,0.05);
     display:flex;
     justify-content:space-around;
     margin-bottom:25px;
-    font-size:18px;
+    font-size:20px;
     font-weight:500;
 }
 
 .overview div{
     background:#f8fafc;
-    padding:15px 20px;
+    padding:18px 24px;
     border-radius:10px;
 }
 
 /* ORDERS */
 
 .orders{
-    width:650px;
+    width:900px;
     background:white;
     border-radius:14px;
-    padding:20px;
+    padding:25px;
     box-shadow:0 10px 25px rgba(0,0,0,0.05);
     flex-grow:1;
     overflow-y:auto;
@@ -154,7 +157,7 @@ header{
 .order{
     background:#f8fafc;
     border-radius:10px;
-    padding:16px 18px;
+    padding:18px 20px;
     margin-bottom:12px;
     display:flex;
     justify-content:space-between;
@@ -173,7 +176,7 @@ header{
     font-weight:600;
     padding:6px 12px;
     border-radius:20px;
-    font-size:13px;
+    font-size:14px;
 }
 
 /* STATUS COLORS */
@@ -216,7 +219,7 @@ header{
         <a href="/inventory">Voorraad</a>
         <a href="/users">Gebruiker</a>
     </div>
-
+    
     <button class="logout">Logout</button>
 </header>
 
@@ -235,16 +238,16 @@ header{
 
     <!-- OVERVIEW -->
     <div class="overview">
-        <div>Printer<span id="printers">{{ count($active_printer) }} / {{ count($printer) }}</span></div>
+        <div>Printer<span id="printers">{{ count($active_printer) }} / {{ count($printer) }}</span></div>        <!--1e count moet nog de gebruikte printers zijn 2e count de maximale die er zijn -->
         <div>Voorraad <span id="voorraad">{{ count($active_voorraad_filaments) }} / {{ count($voorraad) }}</span></div>
         <div>Orders <span id="ordersCount">{{ count($orders) ?? 12 }}</span></div>
     </div>
         
-
+    
     
     <!-- ORDERS LIST -->
     <div class="orders">
-
+        
         <div class="order">
             <div>#101 - John Doe</div>
             <div class="status">In progress</div>
