@@ -233,7 +233,7 @@ header{
 </div>
 
 
-<!-- MAIN -->
+<!-- MAIN --> 
 <div class="main" id="main">
 
     <!-- OVERVIEW -->
@@ -246,7 +246,7 @@ header{
     
     
     <!-- ORDERS LIST -->
-    <div class="orders">
+    <!-- <div class="orders">
         
         <div class="order">
             <div>#101 - John Doe</div>
@@ -257,7 +257,7 @@ header{
             <div>#102 - Anna Smith</div>
             <div class="status">Done</div>
         </div>
-
+        
         <div class="order">
             <div>#103 - Mark Jansen</div>
             <div class="status">Waiting for acceptation</div>
@@ -282,10 +282,30 @@ header{
             <div>#107 - Noah Miller</div>
             <div class="status">In progress</div>
         </div>
-
+    
     </div>
 
-</div>
+</div> -->
+   
+   <!-- DEMO NIEWSBRIEF BASIS
+     -->
+    <form action="/create_nieuwsbrief" method="POST" enctype="multipart/form-data" class="formulier">
+        @csrf
+        <label for="name">Naam</label>
+        <input type="text" name="name" placeholder="Naam van printer" class="invoer">
+        
+          <select name="type" class="invoer">
+            <option value="announcement">announcement</option>
+            <option value="stock">stock</option>
+            <option value="error">error</option>
+            <option value="info">info</option>
+        </select>
+
+        <label for="beschrijving">Beschrijving</label>
+        <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
+        
+        <button type="submit" class="knop">Maak Printer aan</button>
+    </form>
 
 
 <script>

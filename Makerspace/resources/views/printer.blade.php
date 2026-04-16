@@ -24,16 +24,15 @@
     
     <form action="/create_printer" method="POST" enctype="multipart/form-data" class="formulier">
         @csrf
-        <label for="name">Naam</label>
         <input type="text" name="name" placeholder="Naam van printer" class="invoer">
         
-        <label for="type">Type</label>
+
         <select name="type" class="invoer">
             <option value="3D Printer">3D Printer</option>
             <option value="Laser Cutter">Laser Cutter</option>
-            <option value="CNC">CNC printer</option>
+            <option value="CNC Machine">CNC Machine</option>
         </select>
-
+        
         <label for="beschrijving">Beschrijving</label>
         <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
         

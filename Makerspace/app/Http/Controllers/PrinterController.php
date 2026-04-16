@@ -30,7 +30,7 @@ public function create_printer(Request $request)
         // 'brand' => $request->input('merk'),
         'description' => $request->input('beschrijving'),
     ]);
-
+    
     return redirect('/');
 
 
