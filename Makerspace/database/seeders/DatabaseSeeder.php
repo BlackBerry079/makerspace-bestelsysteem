@@ -31,14 +31,14 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'stephen Kusters',
                 'email' => '99073048@mydavinci.nl',
-                'role' => 'admin',
+                'role_id' => '1',
                 'active' => true
             ],
             // [
             //     'name' => 'Bob Jansen',
             //     'email' => '@davinci.nl',
             //     // cijfers horen 8 te zijn + @davinci.nl
-            //     'role' => 'admin',
+            //     'role_id' => '3',
             //     'active' => true
             // ]
          

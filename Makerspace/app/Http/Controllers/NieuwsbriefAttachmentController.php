@@ -19,7 +19,7 @@ class NieuwsbriefAttachmentController extends Controller
 	public function create(Request $request) {
 
 		$validator = Validator::make($request->all(), [
-			"nieuwsbrief_id" => "required|integer|exists:nieuwsbrieven,id",
+			"nieuwsbrief_id" => "required|integer|exists:nieuwsbrief,id",
 			"path" => "required|string|max:255",
 		]);
 		

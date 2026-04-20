@@ -9,7 +9,7 @@ class NieuwsbriefAttachment extends Model
 {
 	use HasFactory;
 
-	protected $table = 'nieuwsbrief_attachment_id';
+	protected $table = 'nieuwsbrief_attachment';
 	public $timestamps = false;
 
 	public function nieuwsbrief()

@@ -13,6 +13,6 @@ class Nieuwsbrief extends Model
 
 	public function nieuwsbriefattachments()
 	{
-		return $this->hasMany(NieuwsbriefAttachment::class, 'nieuwsbrief_id', 'id');
+		return $this->hasMany(NieuwsbriefAttachment::class);
 	}
 }

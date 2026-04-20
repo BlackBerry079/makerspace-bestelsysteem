@@ -15,9 +15,10 @@ return new class extends Migration
              
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->boolean('active');
-            $table->unsignedBigInteger('role_id')->default(1)->index();
+            $table->unsignedBigInteger('role_id')->default(3)->index();
+            // $table->rememberToken(); // als de klant "remember me" wilt kunnen gebruiken
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('role')->onDelete('cascade');

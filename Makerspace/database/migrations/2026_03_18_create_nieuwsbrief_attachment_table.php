@@ -11,10 +11,10 @@ return new class extends Migration
      */
    public function up(): void
     {
-         Schema::create('nieuwsbrief_attachment_id', function (Blueprint $table) {
+         Schema::create('nieuwsbrief_attachment', function (Blueprint $table) {
              
             $table->id();
-            $table->lineString('path');
+            $table->string('path');
             $table->unsignedBigInteger('nieuwsbrief_id');
 
             $table->foreign('nieuwsbrief_id')->references('id')->on('nieuwsbrief')->onDelete('cascade');
@@ -27,6 +27,6 @@ return new class extends Migration
     public function down(): void
     {
     //  Schema::dropIfExists('order');
-     Schema::dropIfExists('nieuwsbrief_attachment_id');
+     Schema::dropIfExists('nieuwsbrief_attachment');
     }
 };
