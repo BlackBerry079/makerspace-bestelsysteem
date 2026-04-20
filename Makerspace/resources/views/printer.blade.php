@@ -26,12 +26,12 @@
         @csrf
         <input type="text" name="name" placeholder="Naam van printer" class="invoer">
         
-
-        <select name="type" class="invoer">
-            <option value="3D Printer">3D Printer</option>
-            <option value="Laser Cutter">Laser Cutter</option>
-            <option value="CNC Machine">CNC Machine</option>
-        </select>
+        <input type="text" name="filament_max" placeholder="Maximale Gram filaments"
+            <select name="type" class="invoer">
+            <option value="beschikbaar">beschikbaar</option>
+            <option value="onderhoud">onderhoud</option>
+            <option value="in gebruik">in gebruik</option>
+            </select>
         
         <label for="beschrijving">Beschrijving</label>
         <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
