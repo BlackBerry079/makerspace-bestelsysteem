@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NieuwsbriefController;
 use App\Http\Controllers\NieuwsbriefAttachmentController;
+use App\Http\Controllers\PrinterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,12 @@ Route::group (['prefix' => 'nieuwsbriefattachment'], function () {
     Route::get('/{id}', [NieuwsbriefAttachmentController::class, 'get_id']);
     Route::post('/', [NieuwsbriefAttachmentController::class, 'create']);
     Route::delete('/{id}', [NieuwsbriefAttachmentController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'printer'], function () {
+    Route::get('/', [PrinterController::class, 'get']);
+    Route::get('/{id}', [PrinterController::class, 'get_id']);
+    Route::post('/', [PrinterController::class, 'create']);
+    Route::put('/{id}', [PrinterController::class, 'update']);
+    Route::delete('/{id}', [PrinterController::class, 'delete']);
 });

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('filament_max')->default(25);
+            $table->integer('filament_max');
             $table->enum('status', ['beschikbaar', 'onderhoud', 'in gebruik'])->default('beschikbaar');
             $table->timestamps();
         });

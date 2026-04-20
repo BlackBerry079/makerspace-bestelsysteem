@@ -9,9 +9,8 @@ class Printer extends Model
 {
     protected $table = 'printer';
 
-    protected $fillable = [
-        'name',
-        'brand',
-        'description'
-    ];
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }
