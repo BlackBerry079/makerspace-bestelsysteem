@@ -1,12 +1,105 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title>Admin Dashboard demo</title>
-        @vite(['resources/css/', 'resources/js/app.js'])
+         <title></title>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     <body>
+        
+        <header>
+            <nav>
+            <ul>
+                <li><h1><a href="/">Dashboard</a></h1></li> <!-- / is dashboard als standaard -->
+                <li><h1><a href="/printer">printers</a></h1></li>
+                <li><h1><a href="/nieuwsbrief">nieuwsbrief</a></h1></li>
+                <li><h1><a href="/orders">Orders</a></h1></li>
+            </ul>
+            </nav>
+        </header>
+        
+        
+        
+         <div class="status">
+            <div class="printer_aantal">
+                <p>printers</p>
+                <p><a href="/printer">{{ count($active_printer) }} / {{ count($printer) }}</a></p>
+                <!-- active printer word  -->
+            </div>
+            <div class="voorraad_aantal">
+                <p>voorraad</p>
+                <p><a href="/voorraad">{{ count($active_voorraad_filaments) }} / {{ count($voorraad) }}</a></p>
+            </div>
+             <div class="orders_aantal">
+                <p>Orders</p> 
+               <p><a href="/orders">{{ count($orders) ?? 12 }}</a></p>
+            </div>
+        </div>
+            
+        
+
+        <div class="sidebar">
+            <h1>nieuwsbrief</h1>
+
+            <form action="{{ route('create_nieuwsbrief') }}" method="POST">
+                @csrf
+                <input type="text" name="title" placeholder="Titel van nieuwsbrief" class="invoer">
+                <input type="text" name="description" placeholder="Beschrijving van nieuwsbrief" class="invoer">
+                <!-- <input type="text" name="type" placeholder="Type van nieuwsbrief" class="invoer">announcement stock error -->
+                <select type="text" name="type" placeholder="Type" class="invoer">
+                    <option>announcement</option> 
+                    <option>stock</option>
+                    <option>error</option> 
+                    <option>info</option>
+                </select>
+                <button type="submit" class="knop">Maak nieuwsbrief aan</button>
+            </form>
+        </div>
+        
+        <div class="nieuwsbrief">
+            @foreach($nieuwsbrief as $item)
+            <div class="nieuwsbrief-item">
+                <h2>{{ $item->title }}</h2>
+                <p>{{ $item->description }}</p>
+                <p>{{ $item->type }}</p>
+                
+                <!-- wordt een dropdown met [announcement', 'stock', 'error', 'info'] opties -->
+                
+                <form action="{{ route('delete_nieuwsbrief', $item->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="knop">Verwijder</button>
+                </form>
+            </div>
+            @endforeach
+        </div>
+    
+    
+            
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard Demo</title>
 
 <style>
 
@@ -24,7 +117,7 @@ body{
 
 header{
     height:60px;
-    background:#01313e;
+    background:#111827;
     color:white;
     display:flex;
     align-items:center;
@@ -76,7 +169,6 @@ header{
     border-left:1px solid #e5e7eb;
     box-shadow:-4px 0 15px rgba(0,0,0,0.05);
     transition:transform 0.3s ease;
-    
 }
 
 .nieuwsbrief.closed{
@@ -89,8 +181,6 @@ header{
     padding:18px;
     font-weight:600;
     border-bottom:1px solid #eee;
-    color: white;
-    background:#34869d;
 }
 
 .arrow{
@@ -122,31 +212,31 @@ header{
 /* OVERVIEW */
 
 .overview{
-    width:900px;
+    width:650px;
     background:white;
     border-radius:14px;
-    padding:30px;
+    padding:25px;
     box-shadow:0 10px 25px rgba(0,0,0,0.05);
     display:flex;
     justify-content:space-around;
     margin-bottom:25px;
-    font-size:20px;
+    font-size:18px;
     font-weight:500;
 }
 
 .overview div{
     background:#f8fafc;
-    padding:18px 24px;
+    padding:15px 20px;
     border-radius:10px;
 }
 
 /* ORDERS */
 
 .orders{
-    width:900px;
+    width:650px;
     background:white;
     border-radius:14px;
-    padding:25px;
+    padding:20px;
     box-shadow:0 10px 25px rgba(0,0,0,0.05);
     flex-grow:1;
     overflow-y:auto;
@@ -157,7 +247,7 @@ header{
 .order{
     background:#f8fafc;
     border-radius:10px;
-    padding:18px 20px;
+    padding:16px 18px;
     margin-bottom:12px;
     display:flex;
     justify-content:space-between;
@@ -176,7 +266,7 @@ header{
     font-weight:600;
     padding:6px 12px;
     border-radius:20px;
-    font-size:14px;
+    font-size:13px;
 }
 
 /* STATUS COLORS */
@@ -219,7 +309,7 @@ header{
         <a href="/inventory">Voorraad</a>
         <a href="/users">Gebruiker</a>
     </div>
-    
+
     <button class="logout">Logout</button>
 </header>
 
@@ -233,21 +323,20 @@ header{
 </div>
 
 
-<!-- MAIN --> 
+<!-- MAIN -->
 <div class="main" id="main">
 
     <!-- OVERVIEW -->
     <div class="overview">
-        <div>Printer<span id="printers">{{ count($active_printer) }} / {{ count($printer) }}</span></div>        <!--1e count moet nog de gebruikte printers zijn 2e count de maximale die er zijn -->
+        <div>Printer<span id="printers">{{ count($active_printer) }} {{  '' }}/ {{ count($printer) }}</span></div>
         <div>Voorraad <span id="voorraad">{{ count($active_voorraad_filaments) }} / {{ count($voorraad) }}</span></div>
         <div>Orders <span id="ordersCount">{{ count($orders) ?? 12 }}</span></div>
     </div>
         
-    
-    
+
     <!-- ORDERS LIST -->
-    <!-- <div class="orders">
-        
+    <div class="orders">
+
         <div class="order">
             <div>#101 - John Doe</div>
             <div class="status">In progress</div>
@@ -257,7 +346,7 @@ header{
             <div>#102 - Anna Smith</div>
             <div class="status">Done</div>
         </div>
-        
+
         <div class="order">
             <div>#103 - Mark Jansen</div>
             <div class="status">Waiting for acceptation</div>
@@ -282,30 +371,10 @@ header{
             <div>#107 - Noah Miller</div>
             <div class="status">In progress</div>
         </div>
-    
+
     </div>
 
-</div> -->
-   
-   <!-- DEMO NIEWSBRIEF BASIS
-     -->
-    <form action="/create_nieuwsbrief" method="POST" enctype="multipart/form-data" class="formulier">
-        @csrf
-        <label for="name">Naam</label>
-        <input type="text" name="name" placeholder="Naam van printer" class="invoer">
-        
-          <select name="type" class="invoer">
-            <option value="announcement">announcement</option>
-            <option value="stock">stock</option>
-            <option value="error">error</option>
-            <option value="info">info</option>
-        </select>
-
-        <label for="beschrijving">Beschrijving</label>
-        <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
-        
-        <button type="submit" class="knop">Maak Printer aan</button>
-    </form>
+</div>
 
 
 <script>

@@ -4,126 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
          <title></title>
-        @vite([, 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     <body>
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f3f4f6;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    margin:0;
-    gap:25px;
-}
-
-/* Printers card */
-
-.card{
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
-    text-align:center;
-    width:300px;
-}
-
-/* Buttons */
-
-button{
-    padding:10px 16px;
-    border:none;
-    border-radius:8px;
-    background:#3b82f6;
-    color:white;
-    cursor:pointer;
-    font-size:14px;
-}
-
-button:hover{
-    background:#2563eb;
-}
-
-/* Remove button */
-
-.remove-btn{
-    margin-top:8px;
-    padding:6px 10px;
-    font-size:12px;
-    background:#ef4444;
-}
-
-.remove-btn:hover{
-    background:#dc2626;
-}
-
-/* Modal */
-
-.modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.4);
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-content{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    width:300px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
-
-input{
-    width:100%;
-    padding:8px;
-    margin-top:5px;
-    margin-bottom:15px;
-    border-radius:6px;
-    border:1px solid #ccc;
-}
-
-.actions{
-    display:flex;
-    justify-content:space-between;
-}
-
-/* Showcase printers vertical */
-
-#showcase-printers{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    width:320px;
-}
-
-/* Printer cards */
-
-.printer-card{
-    background:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-</style>
         
-        <header>
-            <nav>
-            <ul>
-                <li><h1><a href="/">Dashboard</a></h1></li>
-                <li><h1><a href="/printer">printers</a></h1></li>
-                <li><h1><a href="/newsletters">nieuwsbrief</a></h1></li>
-                <li><h1><a href="/orders">Orders</a></h1></li>
-            </ul>
-            </nav>
-        </header>
+      <header>
+        <div class="nav">
+            <a href="/">Dashboard</a>
+            <a href="/printer">Printers</a>
+            <a href="/inventory">Voorraad</a>
+            <a href="/users">Gebruiker</a>
+        </div>
+            <button class="logout">Logout</button>
+    </header>
+  
         
    
   <div class="container">
@@ -132,66 +25,40 @@ input{
     <form action="/create_printer" method="POST" enctype="multipart/form-data" class="formulier">
         @csrf
         <input type="text" name="name" placeholder="Naam van printer" class="invoer">
-        <input type="text" name="merk" placeholder="merk van printer" class="invoer">
-        <label for="">Beschrijving</label style="color: black; font-size: 20px; margin-top: 10px;">
-        <input type="text" name="beschrijving" placeholder="" style="height: 200px;" class="invoer">
+        
+
+        <select name="type" class="invoer">
+            <option value="3D Printer">3D Printer</option>
+            <option value="Laser Cutter">Laser Cutter</option>
+            <option value="CNC Machine">CNC Machine</option>
+        </select>
+        
+        <label for="beschrijving">Beschrijving</label>
+        <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
         
         <button type="submit" class="knop">Maak Printer aan</button>
     </form>
+</div>
 
-   
+<div class="nieuwsbrief" id="nieuwsbrief">
+    <div class="nieuws-header">
+        <span class="arrow" onclick="toggleNieuws()">▶</span>
+        Nieuwsbrief
+    </div>
 </div>
     
     
-
-
-<!-- de scripts voor de nieuwsbrief -->
 <script>
-function openModal(){
-    document.getElementById("printerModal").style.display = "flex";
-}
+function toggleNieuws(){
 
-function closeModal(){
-    document.getElementById("printerModal").style.display = "none";
-}
+    const panel = document.getElementById("nieuwsbrief");
+    const main = document.getElementById("main");
 
-function addPrinter(){
-    const name = document.getElementById("name").value;
-    const type = document.getElementById("type").value;
-    const filaments = document.getElementById("filaments").value;
-    
-    if(!name || !type || !filaments){
-        alert("Please fill in all fields");
-        return;
-    }
-    
-    const showcase = document.getElementById("showcase-printers");
-    
-    const printerCard = document.createElement("div");
-    printerCard.className = "printer-card";
-    
-    printerCard.innerHTML = `
-        <strong>${name}</strong><br>
-        Type: ${type}<br>
-        Filaments: ${filaments}<br>
-        <button class="remove-btn">Remove</button>
-    `;
-    
-    printerCard.querySelector(".remove-btn").onclick = function(){
-        printerCard.remove();
-    };
-    
-    showcase.appendChild(printerCard);
-    
-    document.getElementById("name").value = "";
-    document.getElementById("type").value = "";
-    document.getElementById("filaments").value = "";
-    
-    closeModal();
+    panel.classList.toggle("closed");
+    main.classList.toggle("full");
+
 }
 </script>
+    
     </body>
 </html>
-
-
-

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <title></title>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <body>
+        <style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f3f4f6;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin:0;
+    gap:25px;
+}
+
+/* Printers card */
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    text-align:center;
+    width:300px;
+}
+
+/* Buttons */
+
+button{
+    padding:10px 16px;
+    border:none;
+    border-radius:8px;
+    background:#3b82f6;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+}
+
+button:hover{
+    background:#2563eb;
+}
+
+/* Remove button */
+
+.remove-btn{
+    margin-top:8px;
+    padding:6px 10px;
+    font-size:12px;
+    background:#ef4444;
+}
+
+.remove-btn:hover{
+    background:#dc2626;
+}
+
+/* Modal */
+
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    width:300px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.actions{
+    display:flex;
+    justify-content:space-between;
+}
+
+/* Showcase printers vertical */
+
+#showcase-printers{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:320px;
+}
+
+/* Printer cards */
+
+.printer-card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+</style>
+
+<header>
+    <nav>
+        <ul>
+            <li><h1><a href="/">Dashboard</a></h1></li>
+            <li><h1><a href="/printer">Printers</a></h1></li>
+            <li><h1><a href="/newsletters">Nieuwsbrief</a></h1></li>
+            <li><h1><a href="/orders">Orders</a></h1></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Form for creating a new printer -->
+<div class="container">
+    <h2 class="koptekst">Maak een nieuwe printer aan</h2>
+    
+    <form action="/create_printer" method="POST" enctype="multipart/form-data" class="formulier">
+        @csrf
+        <input type="text" name="name" placeholder="Naam van printer" class="invoer" required>
+        <input type="text" name="merk" placeholder="Merk van printer" class="invoer" required>
+        <label for="">Beschrijving</label>
+        <input type="text" name="beschrijving" placeholder="" style="height: 200px;" class="invoer" required>
+        
+        <button type="submit" class="knop">Maak Printer aan</button>
+    </form>
+</div>
+
+<!-- Card Section for Showing Printers -->
+<div class="card">
+    <h2>Printers</h2>
+    <button onclick="openModal()">Voeg een printer toe</button>
+</div>
+
+<div id="showcase-printers"></div>
+
+<!-- Modal for Adding a Printer -->
+<div class="modal" id="printerModal">
+    <div class="modal-content">
+        <h3>Voeg een printer toe</h3>
+        
+        <label>Naam printer</label>
+        <input type="text" id="name">
+        
+        <label>Type printer</label>
+        <input type="text" id="type">
+        
+        <label>Hoeveel filaments</label>
+        <input type="number" id="filaments">
+        
+        <div class="actions">
+            <button onclick="closeModal()">Annuleren</button>
+            <button onclick="addPrinter()">Toevoegen</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("printerModal").style.display = "flex";
+}
+
+function closeModal(){
+    document.getElementById("printerModal").style.display = "none";
+}
+
+function addPrinter(){
+    const name = document.getElementById("name").value;
+    const type = document.getElementById("type").value;
+    const filaments = document.getElementById("filaments").value;
+    
+    if(!name || !type || !filaments){
+        alert("Please fill in all fields");
+        return;
+    }
+    
+    const showcase = document.getElementById("showcase-printers");
+    
+    const printerCard = document.createElement("div");
+    printerCard.className = "printer-card";
+    
+    printerCard.innerHTML = `
+        <strong>${name}</strong><br>
+        Type: ${type}<br>
+        Filaments: ${filaments}<br>
+        <button class="remove-btn">Remove</button>
+    `;
+    
+    printerCard.querySelector(".remove-btn").onclick = function(){
+        printerCard.remove();
+    };
+    
+    showcase.appendChild(printerCard);
+    
+    document.getElementById("name").value = "";
+    document.getElementById("type").value = "";
+    document.getElementById("filaments").value = "";
+    
+    closeModal();
+}
+</script>
+
+</body>
+</html>

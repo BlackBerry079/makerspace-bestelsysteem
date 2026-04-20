@@ -20,17 +20,17 @@ public function create_printer(Request $request)
 {
     $request->validate([
         'name' => 'required',
-        'merk' => 'required',
+        // 'merk' => 'required',
         'beschrijving' => 'nullable',
     ]);
     
     // 
     DB::table('printer')->insert([
         'name' => $request->input('name'),
-        'brand' => $request->input('merk'),
+        // 'brand' => $request->input('merk'),
         'description' => $request->input('beschrijving'),
     ]);
-
+    
     return redirect('/');
 
 
