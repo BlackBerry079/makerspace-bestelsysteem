@@ -246,7 +246,7 @@ header{
     
     
     <!-- ORDERS LIST -->
-    <!-- <div class="orders">
+    <div class="orders">
         
         <div class="order">
             <div>#101 - John Doe</div>
@@ -272,7 +272,7 @@ header{
             <div>#105 - David Wilson</div>
             <div class="status">Done</div>
         </div>
-
+        
         <div class="order">
             <div>#106 - Emma Garcia</div>
             <div class="status">Waiting for acceptation</div>
