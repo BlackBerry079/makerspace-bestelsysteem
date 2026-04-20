@@ -12,9 +12,9 @@ return new class extends Migration
    public function up(): void
     {
          Schema::create('filament_category', function (Blueprint $table) {
-             
-            $table->id();
-            $table->string('name');
+             // Categorieën voor filament (PLA, ABS, PETG, etc.)
+             $table->id(); // Unieke ID
+             $table->string('name'); // Categorienaam
         });
     }
 

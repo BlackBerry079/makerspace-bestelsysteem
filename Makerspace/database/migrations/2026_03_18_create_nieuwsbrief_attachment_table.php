@@ -12,12 +12,13 @@ return new class extends Migration
    public function up(): void
     {
          Schema::create('nieuwsbrief_attachment', function (Blueprint $table) {
-             
-            $table->id();
-            $table->string('path');
-            $table->unsignedBigInteger('nieuwsbrief_id');
+             // Bijlagen voor nieuwsbrief berichten (afbeeldingen, bestanden, etc.)
+             $table->id(); // Unieke ID
+             $table->string('path'); // Pad naar het attachment bestand
+             $table->unsignedBigInteger('nieuwsbrief_id'); // FK naar nieuwsbrief tabel
 
-            $table->foreign('nieuwsbrief_id')->references('id')->on('nieuwsbrief')->onDelete('cascade');
+             // FK: Bij welk nieuwsbrief bericht hoort deze bijlage
+             $table->foreign('nieuwsbrief_id')->references('id')->on('nieuwsbrief')->onDelete('cascade');
         });
     }
 

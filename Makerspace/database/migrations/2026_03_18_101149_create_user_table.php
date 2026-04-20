@@ -12,16 +12,17 @@ return new class extends Migration
    public function up(): void
     {
          Schema::create('user', function (Blueprint $table) {
-             
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->boolean('active');
-            $table->unsignedBigInteger('role_id')->default(3)->index();
-            // $table->rememberToken(); // als de klant "remember me" wilt kunnen gebruiken
-            $table->timestamps();
+             // Gebruikers van het systeem
+             $table->id(); // Unieke ID
+             $table->string('name'); // Gebruikersnaam
+             $table->string('email')->unique(); // E-mailadres (uniek)
+             $table->boolean('active'); // Actief/inactief
+             $table->unsignedBigInteger('role_id')->default(3)->index(); // FK naar role tabel
+             // $table->rememberToken(); // als de klant "remember me" wilt kunnen gebruiken
+             $table->timestamps(); // Created at en Updated at
 
-            $table->foreign('role_id')->references('id')->on('role')->onDelete('cascade');
+             // FK: Welke rol heeft deze gebruiker (admin, student, etc.)
+             $table->foreign('role_id')->references('id')->on('role')->onDelete('cascade');
             
         });
     }

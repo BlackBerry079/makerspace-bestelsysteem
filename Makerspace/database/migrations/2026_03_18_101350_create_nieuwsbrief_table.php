@@ -12,15 +12,16 @@ return new class extends Migration
    public function up(): void
     {
          Schema::create('nieuwsbrief', function (Blueprint $table) {
-             
-            $table->id();
-            $table->string('title'); 
-            $table->text('description');
-            $table->enum('type', ['announcement', 'stock', 'error', 'info']); 
-            $table->unsignedBigInteger('filament_id')->nullable()->index();
-            $table->timestamps();
+             // Nieuwsbrief berichten voor gebruikers
+             $table->id(); // Unieke ID
+             $table->string('title'); // Titel van het bericht
+             $table->text('description'); // Inhoud van het bericht
+             $table->enum('type', ['announcement', 'stock', 'error', 'info']); // Type bericht
+             $table->unsignedBigInteger('filament_id')->nullable()->index(); // FK naar filament tabel (optioneel)
+             $table->timestamps(); // Created at en Updated at
 
-            $table->foreign('filament_id')->references('id')->on('filament')->onDelete('cascade');
+             // FK: Optioneel gekoppeld aan een specifiek filament (bijv. bij stock berichten)
+             $table->foreign('filament_id')->references('id')->on('filament')->onDelete('cascade');
             });
     }
     

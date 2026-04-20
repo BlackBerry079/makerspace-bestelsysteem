@@ -12,10 +12,9 @@ return new class extends Migration
    public function up(): void
     {
          Schema::create('role', function (Blueprint $table) {
-             
-             $table->id();
-           $table->string('name');
-            // admin en student seeden
+             // Rollen tabel voor gebruikersmachtigingen
+             $table->id(); // Unieke ID
+             $table->string('name'); // Rolnaam (admin, student, etc.)
         });
     }
     

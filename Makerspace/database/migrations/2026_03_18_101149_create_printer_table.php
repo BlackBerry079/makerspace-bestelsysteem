@@ -12,13 +12,13 @@ return new class extends Migration
    public function up(): void
     {
          Schema::create('printer', function (Blueprint $table) {
-             
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->integer('filament_max');
-            $table->enum('status', ['beschikbaar', 'onderhoud', 'in gebruik'])->default('beschikbaar');
-            $table->timestamps();
+             // 3D printers in de makerspace
+             $table->id(); // Unieke ID
+             $table->string('name'); // Printernaam
+             $table->text('description')->nullable(); // Beschrijving
+             $table->integer('filament_max'); // Maximum filament in gram
+             $table->enum('status', ['beschikbaar', 'onderhoud', 'in gebruik'])->default('beschikbaar'); // Status van de printer
+             $table->timestamps(); // Created at en Updated at
         });
     }
     

@@ -12,13 +12,15 @@ return new class extends Migration
    public function up(): void
     {
          Schema::create('order_filaments', function (Blueprint $table) {
-             
-            $table->id();
-            $table->unsignedBigInteger('order_id')->index();
-            $table->unsignedBigInteger('filament_id')->index();
+             // Tussentabel: koppelt filament aan orders (veel-op-veel relatie)
+             $table->id(); // Unieke ID
+             $table->unsignedBigInteger('order_id')->index(); // FK naar order tabel
+             $table->unsignedBigInteger('filament_id')->index(); // FK naar filament tabel
         
-            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
-            $table->foreign('filament_id')->references('id')->on('filament')->onDelete('cascade');
+             // FK: Aan welke order is dit filament gekoppeld
+             $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+             // FK: Welk filament is gekoppeld aan deze order
+             $table->foreign('filament_id')->references('id')->on('filament')->onDelete('cascade');
         });
     }
 
