@@ -22,18 +22,18 @@
   <div class="container">
     <h2 class="koptekst">Maak een nieuwe printer aan</h2>
     
-    <form action="/printer/create" method="POST" enctype="multipart/form-data" class="formulier">
+    <form action="create" method="POST" enctype="multipart/form-data" class="formulier">
         @csrf
         <input type="text" name="name" placeholder="Naam van printer" class="invoer">
         
-        <input type="text" name="filament_max" placeholder="Maximale Gram filaments"
+        <input type="text" name="filament_max" placeholder="Maximale Gram filaments" class="invoer">
             <select name="type" class="invoer">
-            <option value="beschikbaar">beschikbaar</option>
-            <option value="onderhoud">onderhoud</option>
-            <option value="in gebruik">in gebruik</option>
+                <option value="beschikbaar">beschikbaar</option>
+                <option value="onderhoud">onderhoud</option>
+                <option value="in gebruik">in gebruik</option>
             </select>
         
-        <label for="beschrijving">Beschrijving</label>
+            <label for="beschrijving">Beschrijving</label>
         <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
         
         <button type="submit" class="knop">Maak Printer aan</button>

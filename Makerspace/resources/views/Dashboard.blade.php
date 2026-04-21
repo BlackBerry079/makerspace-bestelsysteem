@@ -246,13 +246,20 @@ header{
     
     
     <!-- ORDERS LIST -->
-    <div class="orders">
+    @foreach ($orders as $order)
+        <div class="order">
+            <div>#{{ $order->id }} - {{ $order->name }}</div>
+            <div class="status">{{ $order->status }}</div>
+        </div>
+    
+    @endforeach
+    <!-- <div class="orders">
         
         <div class="order">
             <div>#101 - John Doe</div>
             <div class="status">In progress</div>
         </div>
-
+        
         <div class="order">
             <div>#102 - Anna Smith</div>
             <div class="status">Done</div>
@@ -262,7 +269,7 @@ header{
             <div>#103 - Mark Jansen</div>
             <div class="status">Waiting for acceptation</div>
         </div>
-
+        
         <div class="order">
             <div>#104 - Lisa Brown</div>
             <div class="status">In progress</div>
@@ -283,9 +290,9 @@ header{
             <div class="status">In progress</div>
         </div>
     
-    </div>
+    </div> -->
 
-</div> -->
+</div> 
    
    <!-- DEMO NIEWSBRIEF BASIS
      -->

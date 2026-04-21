@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PrinterController extends Controller
 {
-    public function show()
+        public function show()
     {
         $printer = Printer::all();
 
@@ -17,7 +17,6 @@ class PrinterController extends Controller
             'printer' => $printer,
         ]);
     }
-
     public function get(Request $request) {
         return response()->json(Printer::all(), 200);
     }
