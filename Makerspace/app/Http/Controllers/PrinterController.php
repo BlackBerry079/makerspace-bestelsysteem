@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class PrinterController extends Controller
 {
+    public function show()
+    {
+        $printer = Printer::all();
+
+        return view('printer', [
+            'printer' => $printer,
+        ]);
+    }
+
     public function get(Request $request) {
         return response()->json(Printer::all(), 200);
     }

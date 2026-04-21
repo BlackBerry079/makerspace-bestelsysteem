@@ -32,12 +32,15 @@ Route::delete('/delete_nieuwsbrief/{id}',[MessageController::class,'delete_nieuw
 
 // route naar de printerpagina
 Route::get('/printer',[PrinterController::class, 'show'] )->name('printer');
-Route::delete('/',[DashboardController::class, 'show'] )->name('delete_printer');
-// Printer routes hiermee kan je printers maken
-Route::post('/create_printer',[PrinterController::class, 'create_printer'])->name('printer.create');
+
+// Printer aanmaken
+Route::post('/printer/create',[PrinterController::class, 'create'])->name('create');
+
+// Printer aanpassen
+Route::put('/printer/update/{id}', [PrinterController::class, 'update'])->name('update');
+
 // printers verwijderen
-Route::get('/delete_printer/{id}', [PrinterController::class, 'delete_printer'])->name('delete_printer');
-// Route::post('/printer', [PrinterController::class, 'store']);
+Route::delete('/printer/delete/{id}', [PrinterController::class, 'delete'])->name('printer');
 
 
 

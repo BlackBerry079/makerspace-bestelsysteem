@@ -53,18 +53,14 @@ class NieuwsbriefController extends Controller
 
 		$nieuwsbrief = Nieuwsbrief::findOrFail($id);
 
-		if ($request->has('title')) {
-			$nieuwsbrief->title = $request->title;
+		if (!isset($nieuwsbrief)) {
+			return response()->json(['status' => 0, 'message' => "Nieuwsbrief not found"], 404);
 		}
-		if ($request->has('description')) {
-			$nieuwsbrief->description = $request->description;
-		}
-		if ($request->has('type')) {
-			$nieuwsbrief->type = $request->type;
-		}
-		if ($request->has('filament_id')) {
-			$nieuwsbrief->filament_id = $request->filament_id;
-		}
+
+		$nieuwsbrief->title = $request->title;
+		$nieuwsbrief->description = $request->description;
+		$nieuwsbrief->type = $request->type;
+		$nieuwsbrief->filament_id = $request->filament_id;
 		$nieuwsbrief->save();
 
 		return $nieuwsbrief;

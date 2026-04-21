@@ -22,7 +22,7 @@
   <div class="container">
     <h2 class="koptekst">Maak een nieuwe printer aan</h2>
     
-    <form action="/create_printer" method="POST" enctype="multipart/form-data" class="formulier">
+    <form action="/printer/create" method="POST" enctype="multipart/form-data" class="formulier">
         @csrf
         <input type="text" name="name" placeholder="Naam van printer" class="invoer">
         
