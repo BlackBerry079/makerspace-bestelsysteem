@@ -29,19 +29,19 @@ class PrinterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
+            'filament_max' => 'required|integer|',
             'description' => 'nullable|string',
-            'filament_max' => 'required|integer|min:0',
             'status' => 'required|in:beschikbaar,onderhoud,in gebruik',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 0, 'message' => "Invalid data supplied"], 200);
+            return response()->json(['status' => 0, 'errors' => $validator->errors()], 200);
         }
 
         $printer = new Printer();
         $printer->name = $request->input('name');
-        $printer->description = $request->input('description');
         $printer->filament_max = $request->input('filament_max');
+        $printer->description = $request->input('description');
         $printer->status = $request->input('status');
         $printer->save();
 
