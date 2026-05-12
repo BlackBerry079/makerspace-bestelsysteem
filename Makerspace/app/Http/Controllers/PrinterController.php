@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Printer;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,10 +39,10 @@ class PrinterController extends Controller
         }
         
         $printer = new Printer();
-        $printer->name = $request->input('name');
-        $printer->filament_max = $request->input('filament_max');
-        $printer->description = $request->input('description');
-        $printer->status = $request->input('status');
+        $printer->name = $request->name;
+        $printer->description = $request->description;
+        $printer->filament_max = $request->filament_max;
+        $printer->status = $request->status;
         $printer->save();
 
         return $printer;
@@ -69,10 +68,10 @@ class PrinterController extends Controller
             return response()->json(['status' => 0, 'message' => "Printer not found"], 404);
         }
         
-        $printer->name = $request->input('name');
-        $printer->description = $request->input('description');
-        $printer->filament_max = $request->input('filament_max');
-        $printer->status = $request->input('status');
+        $printer->name = $request->name;
+        $printer->description = $request->description;
+        $printer->filament_max = $request->filament_max;
+        $printer->status = $request->status;
         $printer->save();
 
         return $printer;
