@@ -19,7 +19,6 @@ class FilamentCategoryController extends Controller
 	public function create(Request $request) {
 		$validator = Validator::make($request->all(), [
 			"name" => "required|string|max:255",
-			"description" => "nullable|string"
 		]);
 		
 		if ($validator->fails()) {
@@ -28,7 +27,6 @@ class FilamentCategoryController extends Controller
 
 		$filamentCategory = new FilamentCategory();
 		$filamentCategory->name = $request->name;
-		$filamentCategory->description = $request->description;
 		$filamentCategory->save();
 
 		return $filamentCategory;

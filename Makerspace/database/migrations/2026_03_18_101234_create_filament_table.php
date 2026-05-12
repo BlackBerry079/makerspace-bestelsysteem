@@ -17,7 +17,7 @@ public function up(): void
         $table->id(); // Unieke ID
         $table->string("name"); // Filametnaam
         $table->text("description"); // Beschrijving
-        $table->integer("amount_available"); // Hoeveelheid beschikbaar in gram
+        $table->integer("amount"); // Hoeveelheid beschikbaar in gram
         $table->boolean('active'); // Actief/inactief
         $table->unsignedBigInteger("category_id")->index(); // FK naar filament_category tabel
         $table->timestamps(); // Created at en Updated at
