@@ -182,8 +182,9 @@ function addPrinter(){
     const name = document.getElementById("name").value;
     const type = document.getElementById("type").value;
     const filaments = document.getElementById("filaments").value;
+    const status = document.getElementById("status").value;
     
-    if(!name || !type || !filaments){
+    if(!name || !type || !filaments||!status){
         alert("Please fill in all fields");
         return;
     }
@@ -209,6 +210,7 @@ function addPrinter(){
     document.getElementById("name").value = "";
     document.getElementById("type").value = "";
     document.getElementById("filaments").value = "";
+    document.getElementById("status").value = "";
     
     closeModal();
 }

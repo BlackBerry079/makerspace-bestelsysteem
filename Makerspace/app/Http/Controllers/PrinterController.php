@@ -29,15 +29,16 @@ class PrinterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'filament_max' => 'required|integer|',
+            'filament_max' => 'required|integer|min:0',
             'description' => 'nullable|string',
             'status' => 'required|in:beschikbaar,onderhoud,in gebruik',
         ]);
-
+        
+        
         if ($validator->fails()) {
             return response()->json(['status' => 0, 'errors' => $validator->errors()], 200);
         }
-
+        
         $printer = new Printer();
         $printer->name = $request->input('name');
         $printer->filament_max = $request->input('filament_max');
@@ -46,6 +47,7 @@ class PrinterController extends Controller
         $printer->save();
 
         return $printer;
+        return response()->json(['status' => 1, 'message' => "Printer created successfully"], 201); 
     }
 
     public function update(Request $request, $id) 
