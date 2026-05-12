@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PrinterController extends Controller
 {
-    public function show()
+        public function show()
     {
         $printer = Printer::all();
 
@@ -16,7 +16,6 @@ class PrinterController extends Controller
             'printer' => $printer,
         ]);
     }
-
     public function get(Request $request) {
         return response()->json(Printer::all(), 200);
     }
@@ -29,13 +28,13 @@ class PrinterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
+            'filament_max' => 'required|integer|',
             'description' => 'nullable|string',
-            'filament_max' => 'required|integer|min:0',
             'status' => 'required|in:beschikbaar,onderhoud,in gebruik',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 0, 'message' => "Invalid data supplied"], 200);
+            return response()->json(['status' => 0, 'errors' => $validator->errors()], 200);
         }
 
         $printer = new Printer();
