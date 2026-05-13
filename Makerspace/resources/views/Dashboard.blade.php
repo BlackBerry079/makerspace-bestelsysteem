@@ -238,7 +238,7 @@ header{
 
     <!-- OVERVIEW -->
     <div class="overview">
-        <div>Printer<span id="printers">{{ count($active_printer) }} / {{ count($printer) }}</span></div>        <!--1e count moet nog de gebruikte printers zijn 2e count de maximale die er zijn -->
+        <div>Printer <span id="printers">{{ count($active_printer) }} / {{ count($printer) }}</span></div>        <!--1e count moet nog de gebruikte printers zijn 2e count de maximale die er zijn -->
         <div>Voorraad <span id="voorraad">{{ count($active_voorraad_filaments) }} / {{ count($voorraad) }}</span></div>
         <div>Orders <span id="ordersCount">{{ count($orders) ?? 12 }}</span></div>
     </div>
@@ -253,7 +253,7 @@ header{
         </div>
     
     @endforeach
-    <!-- <div class="orders">
+    <div class="orders">
         
         <div class="order">
             <div>#101 - John Doe</div>
@@ -290,7 +290,7 @@ header{
             <div class="status">In progress</div>
         </div>
     
-    </div> -->
+    </div> 
 
 </div> 
    
@@ -320,7 +320,7 @@ function toggleNieuws(){
 
     const panel = document.getElementById("nieuwsbrief");
     const main = document.getElementById("main");
-
+    
     panel.classList.toggle("closed");
     main.classList.toggle("full");
 

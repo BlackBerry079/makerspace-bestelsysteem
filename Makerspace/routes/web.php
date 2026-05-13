@@ -6,6 +6,7 @@ use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderPageController;
 use App\Http\Controllers\AuthPageController;
+use App\Http\Controllers\InventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,13 @@ Route::get('/',[DashboardController::class, 'show'] )->name('');
 // --------------Nieuwsbrief ROUTES------------------
 Route::post('/',[MessageController::class,'create_nieuwsbrief']) ->name('create_nieuwsbrief');
 Route::delete('/delete_nieuwsbrief/{id}',[MessageController::class,'delete_nieuwsbrief']) ->name('delete_nieuwsbrief');
+
+
+// --------------Inventaris routes--------------
+Route::get('/inventory',[InventoryController::class, 'show'] )->name('inventory');
+
+
+
 
 
 
