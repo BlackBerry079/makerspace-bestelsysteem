@@ -5,7 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderPageController;
-use App\Http\Controllers\AuthPageController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Route::delete('/delete_nieuwsbrief/{id}',[MessageController::class,'delete_nieuw
 
 // --------------PRINTER ROUTES------------------
 // route naar de printerpagina
-Route::get('/printer',[PrinterController::class, 'show'] )->name('printer');
+Route::get('/printer',[PrinterController::class, 'index'] )->name('printer');
 Route::delete('/',[DashboardController::class, 'show'] )->name('delete_printer');
 // Printer routes hiermee kan je printers maken
 Route::post('/create',[PrinterController::class, 'create'])->name('printer.create');
@@ -51,10 +51,10 @@ Route::get('/orders', [OrderPageController::class, 'index'])->name('orders.index
 Route::post('/orders', [OrderPageController::class, 'store'])->name('orders.store');
 Route::get('/api/nieuwsbrief/latest', [OrderPageController::class, 'latestNewsletter'])->name('newsletter.latest');
 
-Route::get('/login', [AuthPageController::class, 'showLogin'])->name('auth.login');
-Route::post('/login', [AuthPageController::class, 'login'])->name('auth.login.submit');
-Route::get('/register', [AuthPageController::class, 'showRegister'])->name('auth.register');
-Route::post('/register', [AuthPageController::class, 'register'])->name('auth.register.submit');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login.submit');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register.submit');
 
 
 

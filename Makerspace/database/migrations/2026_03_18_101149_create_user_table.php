@@ -18,7 +18,8 @@ return new class extends Migration
              $table->string('email')->unique(); // E-mailadres (uniek)
              $table->boolean('active'); // Actief/inactief
              $table->unsignedBigInteger('role_id')->default(3)->index(); // FK naar role tabel
-             // $table->rememberToken(); // als de klant "remember me" wilt kunnen gebruiken
+             $table->rememberToken(); // als de klant "remember me" wilt kunnen gebruiken
+             $table->timestamp('email_verified_at')->nullable(); // verified at
              $table->timestamps(); // Created at en Updated at
 
              // FK: Welke rol heeft deze gebruiker (admin, student, etc.)
