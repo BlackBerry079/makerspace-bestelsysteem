@@ -37,29 +37,22 @@ class PrinterController extends Controller
             'filament_max' => 'required|integer|min:1',
             'status' => 'required|in:beschikbaar,onderhoud,in gebruik',
         ]);
-
+        
+        
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        Printer::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'filament_max' => $request->filament_max,
-            'status' => $request->status,
-        ]);
+        $printer = new Printer();
+        $printer->name = $request->name;
+        $printer->description = $request->description;
+        $printer->filament_max = $request->filament_max;
+        $printer->status = $request->status;
+        $printer->save();
 
-        return redirect()->route('printer.index')
-            ->with('success', 'Printer created successfully');
-    }
-
-    // Show edit printer form
-    public function edit($id)
-    {
-        $printer = Printer::findOrFail($id);
-        return view('printer.edit', ['printer' => $printer]);
+        return $printer;
     }
 
     // Update printer in database

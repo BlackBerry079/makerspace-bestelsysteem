@@ -34,6 +34,13 @@ Route::post('/',[MessageController::class,'create_nieuwsbrief']) ->name('create_
 Route::delete('/delete_nieuwsbrief/{id}',[MessageController::class,'delete_nieuwsbrief']) ->name('delete_nieuwsbrief');
 
 
+// --------------Inventaris routes--------------
+Route::get('/inventory',[InventoryController::class, 'show'] )->name('inventory');
+
+
+
+
+
 
 // --------------PRINTER ROUTES------------------
 // route naar de printerpagina
