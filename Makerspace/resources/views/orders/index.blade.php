@@ -145,7 +145,7 @@
 </head>
 <body>
   <header>
-    <h1>3D Printer Bestel Forum</h1>
+    <h1>Bestel formulier</h1>
   </header>
 
   <main>
@@ -181,7 +181,7 @@
         <label for="beschrijving">Beschrijving van de print</label>
         <textarea id="beschrijving" name="beschrijving">{{ old('beschrijving') }}</textarea>
 
-        <label for="datum">Datum</label>
+        <label for="datum">Deadline</label>
         <input type="date" id="datum" name="datum" value="{{ old('datum') }}" required>
 
         <button type="submit">Verstuur bestelling</button>
