@@ -47,10 +47,10 @@ Route::get('/inventory',[InventoryController::class, 'show'] )->name('inventory'
 Route::get('/printer',[PrinterController::class, 'index'] )->name('printer');
 Route::delete('/',[DashboardController::class, 'show'] )->name('delete_printer');
 // Printer routes hiermee kan je printers maken
-Route::post('/create',[PrinterController::class, 'create'])->name('printer.create');
+// Route::get('/create',[PrinterController::class, 'create'])->name('printer.create'); veranderd naar post en store functie
+Route::post('/printer', [PrinterController::class, 'store'])->name('printer.store');
 // printers verwijderen
-Route::get('/delete/{id}', [PrinterController::class, 'delete'])->name('delete_printer');
-// Route::post('/printer', [PrinterController::class, 'store']);
+Route::delete('/delete/printer/{id}', [PrinterController::class, 'delete'])->name('delete_printer');
 
 
 // --------------ORDER ROUTES------------------ // Nieuwe MVC routes voor verplaatste HTML-pagina's

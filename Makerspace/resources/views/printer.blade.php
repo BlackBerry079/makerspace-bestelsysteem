@@ -22,7 +22,7 @@
   <div class="container">
     <h2 class="koptekst">Maak een nieuwe printer aan</h2>
     
-    <form action="/create" method="POST" enctype="multipart/form-data" class="formulier" onformsubmmit="return check()">
+    <form action="{{ route('printer.store') }}" method="POST" enctype="multipart/form-data" class="formulier" onformsubmmit="return check()">
         @csrf
         <input type="text" name="name" placeholder="Naam van printer" class="invoer">
         

@@ -21,13 +21,14 @@ class PrinterController extends Controller
         $printer = Printer::with('orders')->findOrFail($id);
         return view('printer.show', ['printer' => $printer]);
     }
-
+    
     // Show create printer form
-    public function create()
-    {
-        return view('printer.create');
-    }
-
+    // public function create()
+    // {
+    //     return view('printer.create');
+        // dit doet natuurlijk niks geen pagina.
+    // }
+    
     // Store printer in database
     public function store(Request $request)
     {
@@ -52,7 +53,8 @@ class PrinterController extends Controller
         $printer->status = $request->status;
         $printer->save();
 
-        return $printer;
+    return redirect()->route('printer')
+        ->with('success', 'printer succesvol aangemaaktt');
     }
 
     // Update printer in database
@@ -70,7 +72,8 @@ class PrinterController extends Controller
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
-                ->withInput();
+                ->withInput()
+                ->with('error', 'Error bij het updaten van de printer.');
         }
 
         $printer->update([
