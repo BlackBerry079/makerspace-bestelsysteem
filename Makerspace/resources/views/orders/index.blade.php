@@ -27,12 +27,12 @@
 
                     <aside class="hero__panel" aria-label="Bestelinformatie">
                         <div class="stat-block">
-                            <span class="stat-block__label">Laatste aanvragen</span>
-                            <span class="stat-block__value">{{ $orders->count() }}</span>
+                            <span class="stat-block__value">{{count($orders)}}</span>
+                            <span class="stat-block__value">Bestellingen</span>
                         </div>
                         <div class="stat-block">
                             <span class="stat-block__label">Beschikbare filamenttypes</span>
-                            <span class="stat-block__value">3 opties</span>
+                            <span class="stat-block__value">{{ count($orders) }}  opties</span>
                         </div>
                         <div class="stat-block">
                             <span class="stat-block__label">Bestandstypen</span>
