@@ -245,10 +245,10 @@ header{
    
    <!-- DEMO NIEWSBRIEF BASIS
      -->
-    <form action="/create_nieuwsbrief" method="POST" enctype="multipart/form-data" class="formulier">
+    <form action="/create_nieuwsbrief" method="POST" class="formulier">
         @csrf
-        <label for="name">Naam</label>
-        <input type="text" name="name" placeholder="Naam van printer" class="invoer">
+        <label for="title">Titel</label>
+        <input type="text" name="title" placeholder="Titel van nieuwsbrief" class="invoer">
         
           <select name="type" class="invoer">
             <option value="announcement">announcement</option>
@@ -257,10 +257,10 @@ header{
             <option value="info">info</option>
         </select>
 
-        <label for="beschrijving">Beschrijving</label>
-        <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
+        <label for="description">Beschrijving</label>
+        <input type="text" name="description" placeholder="Beschrijving van nieuwsbrief" class="invoer beschrijving">
         
-        <button type="submit" class="knop">Maak Printer aan</button>
+        <button type="submit" class="knop">Maak nieuwsbrief aan</button>
     </form>
 
 

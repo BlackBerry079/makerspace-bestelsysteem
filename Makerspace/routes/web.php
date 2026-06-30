@@ -38,7 +38,7 @@ Route::get('/Dashboard',[DashboardController::class, 'show'] );
 
 
 // --------------Nieuwsbrief ROUTES------------------
-Route::post('/',[MessageController::class,'create_nieuwsbrief']) ->name('create_nieuwsbrief');
+Route::post('/create_nieuwsbrief',[MessageController::class,'create_nieuwsbrief']) ->name('create_nieuwsbrief');
 Route::delete('/delete_nieuwsbrief/{id}',[MessageController::class,'delete_nieuwsbrief']) ->name('delete_nieuwsbrief');
 
 
