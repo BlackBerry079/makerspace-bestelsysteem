@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -18,8 +19,21 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
+        $user = DB::table('user')
+            ->select('id', 'name', 'email')
+            ->where('email', $request->email)
+            ->first();
+
+        $displayName = $user?->name ?: explode('@', $request->email)[0];
+
+        $request->session()->put('auth_user', [
+            'id' => $user?->id,
+            'name' => $displayName,
+            'email' => $request->email,
+        ]);
+
         return redirect()
-            ->route('auth.login')
+            ->route('home')
             ->with('success', 'Inloggen gelukt (demo).');
     }
 
@@ -40,5 +54,15 @@ class AuthController extends Controller
         return redirect()
             ->route('auth.register')
             ->with('success', 'Registratie gelukt (demo).');
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget('auth_user');
+        $request->session()->regenerateToken();
+
+        return redirect()
+            ->route('home')
+            ->with('success', 'Je bent uitgelogd.');
     }
 }
