@@ -430,6 +430,28 @@ img {
     color: #166534;
 }
 
+.notice--warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.auth-required {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.auth-required__message {
+    margin: 0;
+    flex: 1 1 220px;
+}
+
+.auth-required__button {
+    flex-shrink: 0;
+}
+
 .error-message {
     margin: -8px 0 0;
     color: #b91c1c;

@@ -45,6 +45,7 @@
 
       <form method="POST" action="{{ route('auth.login.submit') }}">
         @csrf
+        <input type="hidden" name="redirect" value="{{ $redirect ?? route('home') }}">
         <div class="form-group">
           <label class="form-label" for="email">E-mailadres</label>
           <input class="form-input" type="email" id="email" name="email" value="{{ old('email') }}" required>

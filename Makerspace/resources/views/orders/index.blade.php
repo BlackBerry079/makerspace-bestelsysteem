@@ -52,6 +52,9 @@
                             <div class="notice notice--success">{{ session('success') }}</div>
                         @endif
 
+                        @if (! $isLoggedIn)
+                            @include('partials.auth-required-notice')
+                        @else
                         <form method="POST" action="{{ route('orders.store') }}" enctype="multipart/form-data" class="form-grid">
                             @csrf
 
@@ -96,6 +99,7 @@
                                 <button class="button-primary" type="submit">Verstuur bestelling</button>
                             </div>
                         </form>
+                        @endif
                     </div>
                 </section>
 

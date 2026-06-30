@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
-    public function showLogin()
+    public function showLogin(Request $request)
     {
-        return view('auth.login');
+        return view('auth.login', [
+            'redirect' => $request->query('redirect', route('home')),
+        ]);
     }
 
     public function login(Request $request)
@@ -32,8 +34,13 @@ class AuthController extends Controller
             'email' => $request->email,
         ]);
 
+        $redirectTo = $request->input('redirect');
+        if (! is_string($redirectTo) || ! str_starts_with($redirectTo, '/')) {
+            $redirectTo = route('home');
+        }
+
         return redirect()
-            ->route('home')
+            ->to($redirectTo)
             ->with('success', 'Inloggen gelukt (demo).');
     }
 

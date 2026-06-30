@@ -63,7 +63,9 @@ Route::delete('/delete/printer/{id}', [PrinterController::class, 'delete'])->nam
 
 // --------------ORDER ROUTES------------------ // Nieuwe MVC routes voor verplaatste HTML-pagina's
 Route::get('/orders', [OrderPageController::class, 'index'])->name('orders.index');
-Route::post('/orders', [OrderPageController::class, 'store'])->name('orders.store');
+Route::post('/orders', [OrderPageController::class, 'store'])
+    ->middleware('session.auth')
+    ->name('orders.store');
 Route::get('/api/nieuwsbrief/latest', [OrderPageController::class, 'latestNewsletter'])->name('newsletter.latest');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
