@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrinterController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderPageController;
 use App\Http\Controllers\AuthController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,13 @@ use App\Http\Controllers\AuthController;
 
 // --------------DASHBOARD ROUTES------------------
 // Dashboard regelt de display van printers, orders en nieuwsbrief,users
-Route::get('/',[DashboardController::class, 'show'] )->name('');
+Route::get('/', function () {
+    return view('home', [
+        'previewOrders' => Order::query()->latest()->take(3)->get(),
+    ]);
+})->name('home');
+Route::get('/dashboard',[DashboardController::class, 'show'] )->name('dashboard');
+Route::get('/Dashboard',[DashboardController::class, 'show'] );
 // Route::get('/printer',[DashboardController::class, 'show'] )->name('printercount');
 
 
