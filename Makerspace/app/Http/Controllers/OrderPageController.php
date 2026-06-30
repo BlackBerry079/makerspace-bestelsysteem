@@ -24,7 +24,7 @@ class OrderPageController extends Controller
             'filament_type' => 'required|string|max:255',
             'kleur_filament' => 'nullable|string|max:255',
             'model_bestand' => 'required|file|extensions:stl,obj,3mf|max:51200',
-            
+
             'beschrijving' => 'nullable|string',
             'datum' => 'required|date',
         ]);

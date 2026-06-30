@@ -84,14 +84,14 @@
 
                             <div>
                                 <label for="beschrijving">Beschrijving van de print</label>
-                                <textarea class="textarea" id="beschrijving" name="beschrijving" placeholder="Omschrijf kort het model, de afwerking of speciale wensen">{{ old('beschrijving') }}</textarea>
+                                <textarea class="textarea" maxlength="120" id="beschrijving" name="beschrijving" placeholder="Omschrijf kort het model, de afwerking of speciale wensen">{{ old('beschrijving') }}</textarea>
                             </div>
-
+                            
                             <div>
                                 <label for="datum">Deadline</label>
                                 <input class="input" type="date" id="datum" name="datum" value="{{ old('datum') }}" required>
                             </div>
-
+                            
                             <div>
                                 <button class="button-primary" type="submit">Verstuur bestelling</button>
                             </div>
