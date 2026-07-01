@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'user';
+
     // $fillable - Mass Assignment protection (whitelist)
     // Velden die je mag opslaan in de database
     protected $fillable = [

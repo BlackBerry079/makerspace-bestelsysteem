@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Support\SessionAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,27 +15,37 @@ class OrderPageController extends Controller
 
         return view('orders.index', [
             'orders' => $orders,
+            'isLoggedIn' => SessionAuth::check(),
         ]);
     }
 
     public function store(Request $request)
     {
+        if (! SessionAuth::check()) {
+            return redirect()
+                ->to(route('orders.index') . '#nieuwe-bestelling')
+                ->with('auth_required', 'Je moet eerst inloggen om een bestelling te plaatsen.');
+        }
+
         $validated = $request->validate([
             'naam' => 'required|string|max:255',
             'filament_type' => 'required|string|max:255',
             'kleur_filament' => 'nullable|string|max:255',
-            'model_bestand' => 'required|file|mimes:stl,obj,3mf|max:20480',
+            'model_bestand' => 'required|file|extensions:stl,obj,3mf|max:51200',
+
             'beschrijving' => 'nullable|string',
             'datum' => 'required|date',
         ]);
 
         $filePath = $request->file('model_bestand')->store('orders', 'public');
 
+        $authUser = SessionAuth::user();
+
         Order::create([
             'title' => 'Bestelling van ' . $validated['naam'] . ' (' . $validated['filament_type'] . ')',
             'description' => $validated['beschrijving'] ?? '',
             'file_path' => $filePath,
-            'user_id' => 1,
+            'user_id' => $authUser['id'] ?? 1,
             'filament_id' => 1,
             'printer_id' => 1,
         ]);

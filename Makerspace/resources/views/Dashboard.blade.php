@@ -235,7 +235,7 @@ header{
 
 <!-- MAIN --> 
 <div class="main" id="main">
-
+    
     <!-- OVERVIEW -->
     <div class="overview">
         <div>Printer <span id="printers">{{ count($active_printer) }} / {{ count($printer) }}</span></div>        <!--1e count moet nog de gebruikte printers zijn 2e count de maximale die er zijn -->
@@ -243,63 +243,31 @@ header{
         <div>Orders <span id="ordersCount">{{ count($orders) ?? 12 }}</span></div>
     </div>
         
-    
-    
     <!-- ORDERS LIST -->
-    @foreach ($orders as $order)
+   
+    <!-- @foreach ($orders as $order)
         <div class="order">
             <div>#{{ $order->id }} - {{ $order->name }}</div>
             <div class="status">{{ $order->status }}</div>
         </div>
-    
+    @endforeach -->
+
+     <div class="orders"> 
+         @foreach ($printer as $indivuele_printer) <!-- dit moet allemaal verplaatst worden met orders -->
+        <div class="order">
+            <div>#{{ $indivuele_printer->id }} - {{ $indivuele_printer->name }}</div>
+            <div class="status">{{ $indivuele_printer->status }}</div>
+        </div>
     @endforeach
-    <div class="orders">
-        
-        <div class="order">
-            <div>#101 - John Doe</div>
-            <div class="status">In progress</div>
-        </div>
-        
-        <div class="order">
-            <div>#102 - Anna Smith</div>
-            <div class="status">Done</div>
-        </div>
-        
-        <div class="order">
-            <div>#103 - Mark Jansen</div>
-            <div class="status">Waiting for acceptation</div>
-        </div>
-        
-        <div class="order">
-            <div>#104 - Lisa Brown</div>
-            <div class="status">In progress</div>
-        </div>
-
-        <div class="order">
-            <div>#105 - David Wilson</div>
-            <div class="status">Done</div>
-        </div>
-        
-        <div class="order">
-            <div>#106 - Emma Garcia</div>
-            <div class="status">Waiting for acceptation</div>
-        </div>
-
-        <div class="order">
-            <div>#107 - Noah Miller</div>
-            <div class="status">In progress</div>
-        </div>
-    
-    </div> 
-
+    </div>  
 </div> 
    
    <!-- DEMO NIEWSBRIEF BASIS
      -->
-    <form action="/create_nieuwsbrief" method="POST" enctype="multipart/form-data" class="formulier">
+    <form action="{{ route('create_nieuwsbrief') }}" method="POST" class="nieuwsbrief">
         @csrf
-        <label for="name">Naam</label>
-        <input type="text" name="name" placeholder="Naam van printer" class="invoer">
+        <label for="title">Titel</label>
+        <input type="text" name="title" placeholder="Titel van nieuwsbrief" class="invoer">
         
           <select name="type" class="invoer">
             <option value="announcement">announcement</option>
@@ -307,19 +275,20 @@ header{
             <option value="error">error</option>
             <option value="info">info</option>
         </select>
-
-        <label for="beschrijving">Beschrijving</label>
-        <input type="text" name="beschrijving" placeholder="" class="invoer beschrijving">
         
-        <button type="submit" class="knop">Maak Printer aan</button>
+        <label for="description">Beschrijving</label>
+        <input type="text" name="description" placeholder="Beschrijving van nieuwsbrief" class="invoer beschrijving">
+        
+        <button type="submit" class="knop">Maak nieuwsbrief aan</button>
     </form>
 
 
 <script>
 function toggleNieuws(){
-
+    
     const panel = document.getElementById("nieuwsbrief");
     const main = document.getElementById("main");
+    
     
     panel.classList.toggle("closed");
     main.classList.toggle("full");
